@@ -2163,11 +2163,11 @@ function CheckAppVersion() {
 
 function callbackCheckAppVersion(data) {
     try {
-        alert(AppVersion.version + " Build: " + AppVersion.build);
+        //alert(AppVersion.version + " Build: " + AppVersion.build);
 
         if (data.d.results.length > 0) {
             var appInfo = data.d.results[0];
-            if (appInfo.AppVersion != "" && appInfo.AppVersion != AppVersion) {
+            if (appInfo.AppVersion != "" && appInfo.AppVersion != AppVersion.version) {
                 var url = appInfo.AppIosUrl;
                 if (device.platform == "Android")
                     url = appInfo.AppAndroidUrl;
@@ -2184,7 +2184,7 @@ function callbackCheckAppVersion(data) {
                     zindex: 2000,
                     blankContent:
                         "<div style='padding: 15px;'>" +
-                        appInfo.MessageToUser.replace("APP_URL", url).replace("CURRENT_VERSION", AppVersion) +
+                        appInfo.MessageToUser.replace("APP_URL", url).replace("CURRENT_VERSION", AppVersion.version) +
                         "</div>"
                 });
             }
