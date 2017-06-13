@@ -19,7 +19,7 @@
 -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "io.tams.ULApps"
+        id        = "io.tams.ULAppsDEV"
         version   = "5.4.14">
 
   <name>DEV - DESR V2</name>
