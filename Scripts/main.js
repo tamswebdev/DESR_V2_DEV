@@ -2163,6 +2163,8 @@ function CheckAppVersion() {
 
 function callbackCheckAppVersion(data) {
     try {
+        alert(AppVersion.version + " Build: " + AppVersion.build);
+
         if (data.d.results.length > 0) {
             var appInfo = data.d.results[0];
             if (appInfo.AppVersion != "" && appInfo.AppVersion != AppVersion) {
