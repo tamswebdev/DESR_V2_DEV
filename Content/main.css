@@ -491,3 +491,17 @@
      background-repeat: no-repeat;
      background-position: right 10px center;
  }
+
+
+ .add-picture-section {
+     border-bottom: 1px solid #ddd;
+     font-size: 11px !important;
+ }
+
+ .add-picture-button
+ {
+    color: green !important;
+    width: 80px !important;
+    padding: 3px 3px !important;
+    font-size: 11px !important;
+ }

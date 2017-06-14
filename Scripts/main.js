@@ -19,6 +19,11 @@ var userLatitude = 0;
 var userSearchDemoRequest = "-1";
 var userSearchSystemType = "All";
 
+//Camera Capture
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value 
+
+
 if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/) && location.href.toLowerCase().indexOf('http://') < 0 && location.href.toLowerCase().indexOf('https://') < 0) {
     document.addEventListener("deviceready", onDeviceReady, false);
 } else {
@@ -62,6 +67,10 @@ function onDeviceReady() {
     //initDemoRequestsDropDown();
     //LoadDemoRequestsDropDown();
     isPageLoadReady = true;
+
+    //Camera Capture
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
 
 };
 
@@ -2137,6 +2146,10 @@ function callbackSelectSpecialist(data) {
     }
 }
 
+function capturePhotoWithFile() {
+    navigator.camera.getPicture(onPhotoFileSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+}
+
 function SelectThisSpecialist(id, displayname, loginname) {
     userInfoData.CurrentSpecialist = id + "|" + displayname + "|" + loginname;
     localstorage.set("userInfoData", userInfoData);
@@ -2147,9 +2160,27 @@ function SelectThisSpecialist(id, displayname, loginname) {
 
 
 
+function capturePhotoWithData() {
+    // Take picture using device camera and retrieve image as base64-encoded string
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+}
 
+function onPhotoDataSuccess(imageData) {
+    // Get image handle
+    //
+    var smallImage = document.getElementById('smallImage');
+    // Unhide image elements
+    //
+    smallImage.style.display = 'block';
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    smallImage.src = "data:image/jpeg;base64," + imageData;
+}
 
-
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
 
 
 
