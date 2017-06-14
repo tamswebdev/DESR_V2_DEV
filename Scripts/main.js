@@ -2162,7 +2162,7 @@ function SelectThisSpecialist(id, displayname, loginname) {
 
 function capturePhotoWithData() {
     // Take picture using device camera and retrieve image as base64-encoded string
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL });
 }
 
 function onPhotoDataSuccess(imageData) {
