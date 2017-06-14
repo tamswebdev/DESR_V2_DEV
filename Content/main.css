@@ -23,12 +23,29 @@
 .header-left {
 	text-align: left;
 	vertical-align: bottom;
-	width: 100px;
+	width: 150px;
 }
 .header-right {
 	text-align: right;
 	vertical-align: bottom;
-	width: 100px;
+	width:150px;
+    
+}
+.header-right-text {
+    font-size: 0.7em;
+    font-weight: normal;
+        padding-right: 24px;
+}
+.header-right .spanCurrentSpecialist {
+	font-weight: bold;
+    display: inline-block;
+    padding-bottom: 8px;
+    padding-right: 23px;
+    background-image: url(../Images/arrow-dropdown.png);
+    background-repeat: no-repeat;
+    background-position: right -4px;
+    background-color: transparent;
+
 }
 
 .header-middle{
@@ -451,4 +468,26 @@
  .history-head-value {
      font-weight:bold;
     vertical-align: top;
+ }
+
+
+ .spanCurrentSpecialist {
+     cursor: pointer;
+ }
+
+ .SelectSpecialistPopup .ui-header {
+     min-height: 40px;
+ }
+
+ .SpecialistItem {
+    border: 1px solid #ddd;
+    margin: 3px 0px;
+    padding: 4px;
+    cursor: pointer;
+ }
+
+ .SelectSpecialistPopup .Selected {
+     background-image: url(../Images/checkmark.png);
+     background-repeat: no-repeat;
+     background-position: right 10px center;
  }
