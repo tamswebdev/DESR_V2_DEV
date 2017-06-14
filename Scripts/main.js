@@ -2166,17 +2166,10 @@ function capturePhotoWithData() {
 }
 
 function onPhotoDataSuccess(imageData) {
-    // Get image handle
-    //
-    var smallImage = document.getElementById('smallImage');
-    // Unhide image elements
-    //
-    smallImage.style.display = 'block';
-    // Show the captured photo
-    // The inline CSS rules are used to resize the image
-    //
-    alert("data:image/jpeg;base64," + imageData);
-    smallImage.src = "data:image/jpeg;base64," + imageData;
+    var newPhoto = $('<img class="captured-photo" style="width:100px;height:100px;" src="" />');
+    newPhoto.attr("src", "data:image/jpeg;base64," + imageData);
+
+    $(".add-picture-display").append(newPhoto);
 }
 
 function onFail(message) {
