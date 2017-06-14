@@ -2175,6 +2175,7 @@ function onPhotoDataSuccess(imageData) {
     // Show the captured photo
     // The inline CSS rules are used to resize the image
     //
+    alert("data:image/jpeg;base64," + imageData);
     smallImage.src = "data:image/jpeg;base64," + imageData;
 }
 
