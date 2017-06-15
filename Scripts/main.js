@@ -1328,8 +1328,11 @@ function callbackSaveStatus(data) {
             $(".add-picture-display").find("img").each(function (index) {
 
                 var url = serviceRootUrl + "photo.ashx?op=SavePhoto&statusid=" + statusID;
-                alert($(this).attr("src"));
-                var params = { image: $(this).attr("src").replace( "data:image/jpeg;base64,", "") };
+                var imageData = $(this).attr("src"); //.replace("data:image/png;base64,", "");//.replace("data:image/jpeg;base64,", "");
+                if (imageData.indexOf(",") > 0)
+                    imageData = imageData.split(",")[1];
+                console.log(imageData);
+                var params = { image: imageData };
 
 
                 $.post(url, params, function (data) {
