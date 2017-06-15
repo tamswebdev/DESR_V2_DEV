@@ -1323,12 +1323,12 @@ function callbackSaveStatus(data) {
     try {
         //console.log(data);
         if (data.d.results.length > 0 && parseInt(data.d.results[0]) > 0) {
-            //alert(data.d.results[0]);
+            alert(data.d.results[0]);
             var statusID = parseInt(data.d.results[0]);
             $(".add-picture-display").find("img").each(function (index) {
 
                 var url = serviceRootUrl + "photo.ashx?op=SavePhoto&statusid=" + statusID;
-                var params = { image: $(this).att("src") };
+                var params = { image: $(this).attr("src") };
 
 
                 $.post(url, params, function (data) {
