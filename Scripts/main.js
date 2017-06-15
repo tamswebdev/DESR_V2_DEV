@@ -1319,35 +1319,48 @@ function SaveStatusProcess(isFinal) {
     }
 }
 
+var photosToUpload = [];
 function callbackSaveStatus(data) {
     try {
         //console.log(data);
+
         if (data.d.results.length > 0 && parseInt(data.d.results[0]) > 0) {
-            alert(data.d.results[0]);
+            //alert(data.d.results[0]);
+
             var statusID = parseInt(data.d.results[0]);
+            photosToUpload = [];
             $(".add-picture-display").find("img").each(function (index) {
-
-                var url = serviceRootUrl + "photo.ashx?op=SavePhoto&statusid=" + statusID;
-                var imageData = $(this).attr("src"); //.replace("data:image/png;base64,", "");//.replace("data:image/jpeg;base64,", "");
-                if (imageData.indexOf(",") > 0)
-                    imageData = imageData.split(",")[1];
-                console.log(imageData);
-                var params = { image: imageData };
-
-
-                $.post(url, params, function (data) {
-                    alert('sent');
-                    // Display the selected image on send complete
-                    //$('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                });
+                photosToUpload.push($(this));
             });
-            //NavigatePage('#pgHistory');
+
+            if (photosToUpload.length > 0)
+                processPhotoUpload(statusID, photosToUpload.shift());
+            else
+                NavigatePage('#pgHistory');
         }
         else {
             //
         }
     }
     catch (err) { }
+}
+
+function processPhotoUpload(statusID, imageObj) {
+    var url = serviceRootUrl + "photo.ashx?statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name");
+    var imageData = imageObj.attr("src");
+    if (imageData.indexOf(",") > 0)
+        imageData = imageData.split(",")[1];
+    //console.log(imageData);
+    var params = { image: imageData };
+
+    $.post(url, params, function (data) {
+        //alert('sent');
+
+        if (photosToUpload.length > 0)
+            processPhotoUpload(statusID, photosToUpload.shift());
+        else
+            NavigatePage('#pgHistory');
+    });
 }
 
 
@@ -2180,18 +2193,32 @@ function SelectThisSpecialist(id, displayname, loginname) {
 
 function capturePhotoWithData() {
     // Take picture using device camera and retrieve image as base64-encoded string
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL });
+    navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, { quality: 50, destinationType: destinationType.DATA_URL });
 }
 
 function onPhotoDataSuccess(imageData) {
-    var newPhoto = $('<img class="captured-photo" style="width:100px;height:100px;" src="" />');
+    var newPhoto = $('<img data-id="" data-name="desr-235-1.jpg" class="captured-photo" style="width:100px;height:100px;" src="" />');
     newPhoto.attr("src", "data:image/jpeg;base64," + imageData);
+
+    var newIndex = 0;
+    $(".add-picture-display").find("img").each(function (index) {
+        try {
+            var temp = $(this).attr("data-name");
+            if (temp.indexOf(".") > 0) {
+                temp = temp.split(".")[0];
+                temp = temp.split("-")[2];
+                newIndex = Math.max(parseInt(temp) + 1, newIndex);
+            }
+        }
+        catch(err) {}
+    });
+    newPhoto.attr("data-name", "DESR-" + $.urlParam("sid") + "-" + newIndex + ".jpg");
 
     $(".add-picture-display").append(newPhoto);
 }
 
-function onFail(message) {
-    alert('Failed because: ' + message);
+function onPhotoDataFail(message) {
+    alert('Failed to capture photo because: ' + message);
 }
 
 
