@@ -1328,6 +1328,7 @@ function callbackSaveStatus(data) {
             $(".add-picture-display").find("img").each(function (index) {
 
                 var url = serviceRootUrl + "photo.ashx?op=SavePhoto&statusid=" + statusID;
+                alert($(this).attr("src"));
                 var params = { image: $(this).attr("src").replace( "data:image/jpeg;base64,", "") };
 
 
