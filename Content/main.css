@@ -505,3 +505,8 @@
     padding: 3px 3px !important;
     font-size: 11px !important;
  }
+
+ .add-picture-display .captured-photo {
+     margin-right: 5px;
+     margin-bottom: 5px;
+ }
