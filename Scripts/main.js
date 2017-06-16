@@ -2224,11 +2224,11 @@ function SelectThisSpecialist(id, displayname, loginname) {
 function capturePhotoWithData() {
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
-        quality: 50,
+        quality: 75,
         destinationType: destinationType.DATA_URL,
         correctOrientation: true,
         targetWidth: 1280,
-        targetHeight: 960
+        targetHeight: 1280
     });
 }
 
