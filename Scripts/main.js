@@ -1382,7 +1382,6 @@ function processPhotoUpload(statusID, imageObj) {
 }
 
 function processPhotoDelete(statusID) {
-    alert("processPhotoDelete");
     var url = serviceRootUrl + "photo.ashx?op=DeletePhotos&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&ids=" + DeletingPhotos.join(";");
     var params = { };
     $.post(url, params, function (data) {
@@ -2270,13 +2269,24 @@ function LoadingPhotos(locationObj, statudId, isEditable) {
                     if (isEditable) {
                         html += '<span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span>';
                     }
-                    html += '<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" src="' + imgurl + '&type=thumb' + '" onclick="cordova.InAppBrowser.open(\'' + imgurl + '&type=full' + '\', \'_blank\', \'location=no\');" />';
+                    html += '<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" src="' + imgurl + '&type=thumb' + '" onclick="ViewingPhoto(\'' + imgurl + '&type=full' + '\')" />';
                     html += '</div>';
                     locationObj.append(html);
                 }
             }
         }
     }
+}
+
+function ViewingPhoto(imgurl) {
+    var iabRef = cordova.InAppBrowser.open(imgurl, '_blank', 'location=no');
+    iabRef.addEventListener('loadstop', function () {
+        iabRef.executeScript({
+            code: "var itm = document.querySelector('#Main div'); itm.setAttribute('style','width:100%');"
+        }, function() {
+            alert("Element Successfully Hijacked");
+        });
+    });
 }
 
 function DeletingPhoto(imageDiv) {

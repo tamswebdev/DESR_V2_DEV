@@ -45,7 +45,8 @@
     background-repeat: no-repeat;
     background-position: right -4px;
     background-color: transparent;
-
+    font-size: 15px;
+    line-height: 16px;
 }
 
 .header-middle{
