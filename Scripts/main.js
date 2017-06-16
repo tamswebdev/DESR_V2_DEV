@@ -669,6 +669,10 @@ function callbackPopulateHistories(data) {
                 temp += '<a id="btnAddComment_' + status.ID + '" data-mini="true" data-inline="true" data-role="button" href="javascript: saveAdditionalComment(' + status.ID + ');" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add Comment</span></span></a>';
                 temp += '</td>';
                 temp += '</tr>';
+                temp += '<tr>';
+                temp += '<td class="history-item-photo-section" data-status-id="' + status.ID + '" data-status-photos="' + status.Photos + '" colspan="2" style="font-weight:normal;text-align:center;padding-top: 10px;padding-bottom: 10px;">';
+                temp += '</td>';
+                temp += '</tr>';
                 temp += '</table> ';
                 temp += '</div> ';
                 temp += '</td>';
@@ -699,6 +703,10 @@ function toggleHistoryStatusDetails(obj) {
     if ($(obj).closest("div").hasClass("history-collapsed")) {
         $(obj).closest("div").removeClass("history-collapsed").addClass("history-expanded");
         $(obj).closest("div").next().show();
+
+        var tempobj = $(obj).closest("td.catalog-info").find(".history-item-photo-section");
+        var tempstatusid = tempobj.attr("data-status-id");
+        LoadingPhotos(tempobj, tempstatusid, false);
     }
     else {
         $(obj).closest("div").removeClass("history-expanded").addClass("history-collapsed");
@@ -2222,8 +2230,24 @@ function onPhotoDataFail(message) {
 }
 
 
+function LoadingPhotos(locationObj, statudId, isEditable) {
+    if (locationObj.find("img").length == 0) {
+        var photos = locationObj.attr("data-status-photos");
+        console.log(photos);
+        if (photos != "") {
+            var photoTokens = photos.split(";");
+            for (var i = 0; i < photoTokens.length; i++) {
+                var values = photoTokens[i].split("|");
+                if (values.length >= 2) {
+                    var imgurl = serviceRootUrl + 'photoview.ashx?pid=' + values[0] + '&authInfo=' + userInfoData.AuthenticationHeader + '&spurl=' + spwebRootUrl + SitePath;
+                    locationObj.append('<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" style="width:100px;height:100px;" src="' + imgurl + '&type=thumb' + '" onclick="window.open(\'' + imgurl + '&type=full' + '\', \'_system\');" />');
+                }
+            }
+        }
+    }
 
-
+   
+}
 
 
 
