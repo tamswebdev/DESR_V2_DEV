@@ -955,8 +955,10 @@ function callbackLoadAddStatus(data) {
             $("#inputSystemSerialNumber").val("");
         }
 
-        if (demoRequest.SerialNumber == "")
+        if ($("#inputSystemSerialNumber").val() == "")
             $(".add-new-status-serial-number").show();
+
+        $(".add-picture-display").html("");
 
     }
     catch (err) { }
@@ -1112,7 +1114,7 @@ function callbackLoadDraftStatus(data) {
             else
                 $("#LayoutChangeExplainTR").hide();
 
-
+            $(".add-picture-display").html("");
             if (item.Photos != "") {
                 $(".add-picture-display").attr("data-status-photos", item.Photos);
                 LoadingPhotos($(".add-picture-display"), item.ID, true);
@@ -1120,6 +1122,7 @@ function callbackLoadDraftStatus(data) {
         }
         else {
             //
+            $(".add-picture-display").html("");
             $("#inputDemoRequestID").val("");
             $("#inputScheduleID").val("");
             $("#inputEquipmentRequestID").val("");
