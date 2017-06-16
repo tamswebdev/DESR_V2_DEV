@@ -436,13 +436,12 @@ $(document).on("pagebeforeshow", "#pgHistory", function (event) {
 
 function callbackPopulateHistories(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $("#divHistoryResults").text("");
 
             for (var i = 0; i < data.d.results.length; i++) {
                 var status = data.d.results[i];
-                //console.log(status);
+
                 var temp = "";
                 temp += '<table class="table-catalog-info">';
                 temp += '<tr>';
@@ -732,7 +731,6 @@ function saveAdditionalComment(id) {
 
 function callbackAddComment(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             NavigatePage("#pgRedirect?url=" + encodeURIComponent("#pgHistory?id=" + data.d.results[0]));
         }
@@ -926,7 +924,6 @@ function callbackLoadAddStatus(data) {
             //$("#catalog_Modality").text(catalog.Modality);
 
             var demoRequest = data.d.results[0];
-            //console.log(demoRequest);
 
             $("#catalog_Customer").text(demoRequest.Customer);
             $("#inputCustomer").val(demoRequest.Customer);
@@ -968,7 +965,6 @@ function callbackLoadAddStatus(data) {
 
 function callbackGetPhysicalStateValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#PhysicalState option[value!="N/A"]').remove();
             var lookupPhysicalStateValues = "";
@@ -988,7 +984,6 @@ function callbackGetPhysicalStateValues(data) {
 
 function callbackGetTransducerStateValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#TransducerState option[value!="N/A"]').remove();
             var lookupTransducerStateValues = "";
@@ -1010,7 +1005,6 @@ function callbackGetTransducerStateValues(data) {
 
 function callbackGetCPLValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#controlPanelLayout option[value!="N/A"]').remove();
             var lookupCPLValues = "";
@@ -1030,10 +1024,8 @@ function callbackGetCPLValues(data) {
 
 function callbackLoadDraftStatus(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             var item = data.d.results[0];
-            //console.log(item);
 
             $("#inputCustomer").val(item.Customer);
             $("#inputSystemType").val(item.SystemType);
@@ -1192,7 +1184,6 @@ function saveStatus(isFinal) {
         StatusId: $("#divStatusId").text()
     };
 
-    //console.log($scope);
 
     //if ($scope.recordId == "" || !($scope.recordId > 0)) {
     //if ($scope.demoRequestID == "" || !($scope.demoRequestID > 0)) {
@@ -1339,7 +1330,6 @@ function SaveStatusProcess(isFinal) {
 var photosToUpload = [];
 function callbackSaveStatus(data) {
     try {
-        //console.log(data);
 
         if (data.d.results.length > 0 && parseInt(data.d.results[0]) > 0) {
             //alert(data.d.results[0]);
@@ -1347,12 +1337,11 @@ function callbackSaveStatus(data) {
             var statusID = parseInt(data.d.results[0]);
             photosToUpload = [];
             $(".add-picture-display").find("img").each(function (index) {
-                if ($(this).attr("data-id") == "")
+                if ($(this).attr("data-id") == "") {
                     photosToUpload.push($(this));
+                }
             });
 
-            //console.log(DeletingPhotos);
-            //console.log(photosToUpload);
             if (DeletingPhotos.length > 0)
                 processPhotoDelete(statusID);
             else if (photosToUpload.length > 0)
@@ -1368,11 +1357,11 @@ function callbackSaveStatus(data) {
 }
 
 function processPhotoUpload(statusID, imageObj) {
-    var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name");
+    var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name").replace("XIDX", statusID);
     var imageData = imageObj.attr("src");
     if (imageData.indexOf(",") > 0)
         imageData = imageData.split(",")[1];
-    //console.log(imageData);
+
     var params = { image: imageData };
 
     $.post(url, params, function (data) {
@@ -1578,7 +1567,6 @@ $(document).on("pagebeforeshow", "#pgSendFeedback", function (event) {
 
 function callbackGetPGValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#ddl_SF_ProductGap option[value!="N/A"]').remove();
             var lookupPGValues = "";
@@ -1598,7 +1586,6 @@ function callbackGetPGValues(data) {
 
 function callbackGetFeedbackPortfolioGapValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#ddl_SF_PortfolioGap option[value!="N/A"]').remove();
             var lookupFeedbackPortfolioGapValues = "";
@@ -1618,7 +1605,6 @@ function callbackGetFeedbackPortfolioGapValues(data) {
 
 function callbackGetFeedbackClinicalAppsValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#ddl_SF_ClinicalApps option[value!="N/A"]').remove();
             var lookupFeedbackClinicalAppsValues = "";
@@ -1639,7 +1625,6 @@ function callbackGetFeedbackClinicalAppsValues(data) {
 
 function callbackGetFeedbackWorkflowValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#ddl_SF_Workflow option[value!="N/A"]').remove();
             var lookupFeedbackWorkflowValues = "";
@@ -1659,7 +1644,6 @@ function callbackGetFeedbackWorkflowValues(data) {
 
 function callbackGetFeedbackProductNameValues(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0) {
             $('#ddl_SF_ProductName option[value!="N/A"]').remove();
             var lookupFeedbackProductNameValues = "";
@@ -1859,7 +1843,6 @@ function SaveFeedbackProcess(isFinal) {
 
 function callbackSaveFeedback(data) {
     try {
-        //console.log(data);
         if (data.d.results.length > 0 && parseInt(data.d.results[0]) > 0) {
             NavigatePage('#pgHome');
         }
@@ -1911,18 +1894,7 @@ function Jsonp_Call(_url, _async, callback) {
 }
 
 function Jsonp_Call_RecursiveCall(_url, _async, callback) {
-    //if (userLongitude != 0 || userLongitude != 0 || Jsonp_Call_Count >= 1)
-    //{
-    //    console.log("call: " + Jsonp_Call_Count)
     Jsonp_Call_Process(_url, _async, callback)
-    //}
-    //else
-    //{
-    //	setTimeout(function(){
-    //		Jsonp_Call_Count++;
-    //		Jsonp_Call_RecursiveCall(_url, _async, callback);
-    //	}, 1000);
-    //}
 }
 
 function Jsonp_Call_Process(_url, _async, callback) {
@@ -2251,7 +2223,7 @@ function onPhotoDataSuccess(imageData) {
         }
         catch(err) {}
     });
-    newPhoto.find("img").attr("data-name", "DESR-" + $.urlParam("sid") + "-" + newIndex + ".jpg");
+    newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
 
     $(".add-picture-display").append(newPhoto);
 }
@@ -2299,7 +2271,6 @@ function DeletingPhoto(imageDiv) {
     if (imgID != "")
         DeletingPhotos.push(imgID);
 
-    //console.log(imgID);
     imageDiv.remove();
 }
 
