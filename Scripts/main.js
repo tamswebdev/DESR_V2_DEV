@@ -2279,14 +2279,19 @@ function LoadingPhotos(locationObj, statudId, isEditable) {
 }
 
 function ViewingPhoto(imgurl) {
-    var iabRef = cordova.InAppBrowser.open(imgurl, '_blank', 'location=no');
+    /*var iabRef = cordova.InAppBrowser.open(imgurl, '_blank', 'location=no');
     iabRef.addEventListener('loadstop', function () {
         iabRef.executeScript({
             code: "var itm = document.querySelector('#Main div'); itm.setAttribute('style','width:100%');"
         }, function() {
             alert("Element Successfully Hijacked");
         });
-    });
+    });*/
+
+    var win = window.open(imgurl, "_blank", "EnableViewPortScale=yes,location=no");
+    //win.addEventListener("loadstop", function () {
+    //    win.executeScript({ code: "alert( 'hello' );" });
+    //});
 }
 
 function DeletingPhoto(imageDiv) {
