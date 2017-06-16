@@ -1344,10 +1344,15 @@ function callbackSaveStatus(data) {
             var statusID = parseInt(data.d.results[0]);
             photosToUpload = [];
             $(".add-picture-display").find("img").each(function (index) {
-                photosToUpload.push($(this));
+                if ($(this).attr("data-id") == "")
+                    photosToUpload.push($(this));
             });
 
-            if (photosToUpload.length > 0)
+            //console.log(DeletingPhotos);
+            //console.log(photosToUpload);
+            if (DeletingPhotos.length > 0)
+                processPhotoDelete(statusID);
+            else if (photosToUpload.length > 0)
                 processPhotoUpload(statusID, photosToUpload.shift());
             else
                 NavigatePage('#pgHistory');
@@ -1360,7 +1365,7 @@ function callbackSaveStatus(data) {
 }
 
 function processPhotoUpload(statusID, imageObj) {
-    var url = serviceRootUrl + "photo.ashx?statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name");
+    var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name");
     var imageData = imageObj.attr("src");
     if (imageData.indexOf(",") > 0)
         imageData = imageData.split(",")[1];
@@ -1369,7 +1374,19 @@ function processPhotoUpload(statusID, imageObj) {
 
     $.post(url, params, function (data) {
         //alert('sent');
+        if (photosToUpload.length > 0)
+            processPhotoUpload(statusID, photosToUpload.shift());
+        else
+            NavigatePage('#pgHistory');
+    });
+}
 
+function processPhotoDelete(statusID) {
+    alert("processPhotoDelete");
+    var url = serviceRootUrl + "photo.ashx?op=DeletePhotos&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&ids=" + DeletingPhotos.join(";");
+    var params = { };
+    $.post(url, params, function (data) {
+        //alert('sent');
         if (photosToUpload.length > 0)
             processPhotoUpload(statusID, photosToUpload.shift());
         else
