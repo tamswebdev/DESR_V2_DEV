@@ -2240,7 +2240,7 @@ function LoadingPhotos(locationObj, statudId, isEditable) {
                 var values = photoTokens[i].split("|");
                 if (values.length >= 2) {
                     var imgurl = serviceRootUrl + 'photoview.ashx?pid=' + values[0] + '&authInfo=' + userInfoData.AuthenticationHeader + '&spurl=' + spwebRootUrl + SitePath;
-                    locationObj.append('<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" style="width:100px;height:100px;" src="' + imgurl + '&type=thumb' + '" onclick="window.open(\'' + imgurl + '&type=full' + '\', \'_system\');" />');
+                    locationObj.append('<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" style="width:100px;height:100px;" src="' + imgurl + '&type=thumb' + '" onclick="cordova.InAppBrowser.open(\'' + imgurl + '&type=full' + '\', \'_blank\', \'location=no\');" />');
                 }
             }
         }
