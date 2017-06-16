@@ -945,7 +945,7 @@ function callbackLoadAddStatus(data) {
             $("#inputEquipmentRequestID").val(demoRequest.EquipmentRequestID);
             $("#inputDemoRequestID").val(demoRequest.DemoRequestID);
 
-            $("#selectModality").val("UL").selectmenu('refresh', true);
+            $("#selectModality").val("UL").selectmenu('refresh', true);         
         }
         else {
             //
@@ -1111,6 +1111,12 @@ function callbackLoadDraftStatus(data) {
                 $("#LayoutChangeExplainTR").show();
             else
                 $("#LayoutChangeExplainTR").hide();
+
+
+            if (item.Photos != "") {
+                $(".add-picture-display").attr("data-status-photos", item.Photos);
+                LoadingPhotos($(".add-picture-display"), item.ID, true);
+            }
         }
         else {
             //
@@ -2205,8 +2211,8 @@ function capturePhotoWithData() {
 }
 
 function onPhotoDataSuccess(imageData) {
-    var newPhoto = $('<img data-id="" data-name="desr-235-1.jpg" class="captured-photo" style="width:100px;height:100px;" src="" />');
-    newPhoto.attr("src", "data:image/jpeg;base64," + imageData);
+    var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
+    newPhoto.find("img").attr("src", "data:image/jpeg;base64," + imageData);
 
     var newIndex = 1;
     $(".add-picture-display").find("img").each(function (index) {
@@ -2220,7 +2226,7 @@ function onPhotoDataSuccess(imageData) {
         }
         catch(err) {}
     });
-    newPhoto.attr("data-name", "DESR-" + $.urlParam("sid") + "-" + newIndex + ".jpg");
+    newPhoto.find("img").attr("data-name", "DESR-" + $.urlParam("sid") + "-" + newIndex + ".jpg");
 
     $(".add-picture-display").append(newPhoto);
 }
@@ -2229,24 +2235,40 @@ function onPhotoDataFail(message) {
     alert('Failed to capture photo because: ' + message);
 }
 
-
+var DeletingPhotos = [];
 function LoadingPhotos(locationObj, statudId, isEditable) {
+    DeletingPhotos = [];
+
     if (locationObj.find("img").length == 0) {
         var photos = locationObj.attr("data-status-photos");
-        console.log(photos);
+        
         if (photos != "") {
             var photoTokens = photos.split(";");
             for (var i = 0; i < photoTokens.length; i++) {
                 var values = photoTokens[i].split("|");
                 if (values.length >= 2) {
                     var imgurl = serviceRootUrl + 'photoview.ashx?pid=' + values[0] + '&authInfo=' + userInfoData.AuthenticationHeader + '&spurl=' + spwebRootUrl + SitePath;
-                    locationObj.append('<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" style="width:100px;height:100px;" src="' + imgurl + '&type=thumb' + '" onclick="cordova.InAppBrowser.open(\'' + imgurl + '&type=full' + '\', \'_blank\', \'location=no\');" />');
+                    var html = '';
+                    html += '<div class="captured-photo-div">';
+                    if (isEditable) {
+                        html += '<span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span>';
+                    }
+                    html += '<img class="captured-photo" data-id="' + values[0] + '" data-name="' + values[1] + '" src="' + imgurl + '&type=thumb' + '" onclick="cordova.InAppBrowser.open(\'' + imgurl + '&type=full' + '\', \'_blank\', \'location=no\');" />';
+                    html += '</div>';
+                    locationObj.append(html);
                 }
             }
         }
     }
+}
 
-   
+function DeletingPhoto(imageDiv) {
+    var imgID = imageDiv.find("img").attr("data-id");
+    if (imgID != "")
+        DeletingPhotos.push(imgID);
+
+    //console.log(imgID);
+    imageDiv.remove();
 }
 
 

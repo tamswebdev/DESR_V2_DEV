@@ -506,9 +506,26 @@
     font-size: 11px !important;
  }
 
- .history-item-photo-section .captured-photo,
- .add-picture-display .captured-photo {
+ 
+.captured-photo-div {
      margin-right: 5px;
      margin-bottom: 5px;
-     border: 1px solid black;
+     display: inline-block;
  }
+
+ .captured-photo-div .captured-photo {
+     border: 1px solid black;
+     width:100px;
+     height:100px;
+ }
+
+ .captured-photo-div .captured-photo-delete {
+    background-color: red;
+    position: absolute;
+    color: white;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 2px 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
