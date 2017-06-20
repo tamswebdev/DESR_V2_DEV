@@ -1956,6 +1956,7 @@ function callbackLoginByTouchID(data) {
     try {
 
         if (data.d.results.issuccess) {
+            userInfoData.ID = data.d.results.id;
             userInfoData.DisplayName = data.d.results.name;
             userInfoData.Email = data.d.results.email;
             userInfoData.Phone = data.d.results.phone;
