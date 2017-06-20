@@ -284,11 +284,8 @@ function performSearch() {
 function searchAction() {
     $("#divSearchResults").text("").append(getLoadingImg());
 
-    //userSearchText = $("#searchCatalogs").val();
-    userSearchDemoRequest = -1;//$("#filterDemoRequest").val();
+    userSearchDemoRequest = -1;
 
-    //var searchURL = serviceRootUrl + "svc.aspx?op=SearchCatalogs&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&searchText=" + userSearchText + "&modality=All&documentType=" + userSearchDemoRequest;
-    //var searchURL = serviceRootUrl + "svc.aspx?op=SearchDemoRequests&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&searchText=" + userSearchText + "&modality=All&documentType=" + userSearchDemoRequest;
     var searchURL = serviceRootUrl + "svc.aspx?op=SearchDemoRequests&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&modality=All&strRequestID=" + userSearchDemoRequest + "&specialistLogin=" + userInfoData.CurrentSpecialist;
 
     Jsonp_Call(searchURL, false, "callbackPopulateSearchResults");
@@ -300,41 +297,10 @@ function callbackPopulateSearchResults(data) {
 
         if (data.d.results.length > 0) {
             for (var i = 0; i < data.d.results.length; i++) {
-                //var catalog = data.d.results[i];
-                //var temp = "";
-                //temp += '<table class="search-item">';
-                //	temp += '<tr>';
-                //		if (catalog.ImageURL != "")
-                //			temp += '<td class="catalog-img"><div><img class="img-icon" src="' + serviceRootUrl + catalog.ImageURL + '" /></div></td>';
-                //		else
-                //			temp += '<td class="catalog-img"><div><img class="img-icon" src="images/no_image.jpg" /></div></td>';
-                //		temp += '<td class="catalog-info">';
-                //			temp += '<div class="div-catalog-info">';
-                //				temp += '<span class="head-cat">' + catalog.Modality + ' (' + catalog.SystemType + ')</span><br />';
-                //				temp += 'Serial Number: ' + catalog.Product + '<br />';
-                //				temp += 'Software Version: ' + catalog.Software_x0020_Version + ' (Revision ' + catalog.Revision_x0020_Level + ')<br />';
-                //				temp += 'Last Updated By: ' + catalog.MCSS.substring(catalog.MCSS.indexOf("#") + 1) + '<br /><br />';
-                //				temp += 'Last Updated: ' + catalog.System_x0020_Date.substring(0, catalog.System_x0020_Date.indexOf(" ")) + '';
-                //			temp += '</div>';
-                //		temp += '</td>';
-                //	temp += '</tr>';
-                //	temp += '<tr>';
-                //		temp += '<td class="td-add-to-cart" valign="bottom" colspan="4">';
-                //			temp += '<div class="div-catalog-add">';
-                //				temp += '<a data-mini="true" data-inline="true" data-role="button" href="javascript: addStatusAction('+catalog.ID+');" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add Status</span></span></a>';
-                //			temp += '</div>';
-                //		temp += '</td>';
-                //	temp += '</tr>';
-                //temp += '</table>';
-
                 var demoRequest = data.d.results[i];
                 var temp = "";
                 temp += '<table class="search-item">';
                 temp += '<tr>';
-                //if (demoRequest.ImageURL != "")
-                //    temp += '<td class="catalog-img"><div><img class="img-icon" src="' + serviceRootUrl + demoRequest.ImageURL + '" /></div></td>';
-                //else
-                //temp += '<td class="catalog-img"><div><img class="img-icon" src="images/no_image.jpg" /></div></td>';
                 temp += '<td class="catalog-info">';
                 temp += '<div class="div-catalog-info">';
                 temp += '<table width="100%" cellpadding="1" cellspacing="1">'
@@ -346,39 +312,19 @@ function callbackPopulateSearchResults(data) {
                 temp += '<tr><td class="search-result-title">System Serial #:</td><td class="search-result-value">' + demoRequest.SerialNumber + '</td></tr>';
                 temp += '<tr><td class="search-result-title">Status:</td><td class="search-result-value">' + (demoRequest.StatusStatus == "Pending" ? "<span style='color:red;'>" + demoRequest.StatusStatus + "</span>" : "<span style='color:blue;'>" + demoRequest.StatusStatus + "</span>") + '</td></tr>';
                 temp += '</table>'
-                //temp += '<span class="head-cat"><span class="search-result-title">Customer:</span> <span class="search-result-value">' + demoRequest.Customer + '</span></span><br />';
-                //temp += '<span class="search-result-title">Sales Rep:</span> <span class="search-result-value">' + demoRequest.SalesRep + '</span><br />';
-                //temp += '<span class="search-result-title">Demo Date:</span> <span class="search-result-value">' + demoRequest.RequestedDate + '</span><br />';
-                //temp += '<span class="search-result-title">Demo System:</span> <span class="search-result-value">' + demoRequest.DemoSystem + '</span><br />';
-                //temp += '<span class="search-result-title">System Serial #:</span> <span class="search-result-value">' + demoRequest.SerialNumber + '</span><br /><br />';
                 temp += '</div>';
                 temp += '</td>';
                 temp += '</tr>';
-                //temp += '<tr>';
-                //temp += '<td class="td-add-to-cart" valign="bottom">';
-                //temp += '<div class="div-catalog-add">';
-                //temp += '<a data-mini="true" data-inline="true" data-role="button" href="javascript: addStatusAction(' + demoRequest.DemoRequestID.toString() + ');" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add Status</span></span></a>';
-                //temp += '</div>';
-                //temp += '</td>';
-                //temp += '</tr>';
                 temp += '</table>';
 
                 $("#divSearchResults").append(temp);
             }
 
-            //$(".btnAddStatus").button('refresh');
             $('.btnAddStatus').attr("data-theme", "a").removeClass("ui-btn-up-e").addClass("ui-btn-up-a");
         }
         else {
             //no item
             var temp = "<br /><center>No item found.</center>";
-
-            //temp += "<br />";			
-            //if (userSearchText != "")
-            //	temp += "<div><center><i>Keyword:</i> <b>"+ userSearchText +"</b></center></div>";
-
-            //temp += "<div><center><i>System Type:</i> <b>"+ userSearchDemoRequest +"</b></center></div>";
-
             $("#divSearchResults").text("").append(temp);
         }
     }
@@ -2013,7 +1959,11 @@ function callbackLoginByTouchID(data) {
             userInfoData.DisplayName = data.d.results.name;
             userInfoData.Email = data.d.results.email;
             userInfoData.Phone = data.d.results.phone;
+            userInfoData.Login = data.d.results.loginname;
+            userInfoData.CurrentSpecialist = userInfoData.ID + "|" + userInfoData.DisplayName + "|" + userInfoData.Login;
+
             $(".spanLoginUser").text("" + userInfoData.DisplayName);
+
 
             userInfoData.Expiration = getTimestamp() + 14400000; //4 hours
 
