@@ -123,8 +123,7 @@ $(document).on("pagebeforeshow", "#pgSearch", function (event) {
 });
 
 function CheckTouchIDAvailable() {
-	var RetVal=false;
-	Model="";
+	var RetVal=false; Model="";
 	if (typeof device != 'undefined')
 	{
 		if (typeof touchid != 'undefined')
@@ -148,6 +147,7 @@ function CheckTouchIDAvailable() {
 			}				
 		}
 	}
+	alert(RetVal);
 	return (RetVal);
 }
 
@@ -2008,19 +2008,12 @@ function checkUserLogin() {
 
 
 function LoginUserByTouchID(TouchIDAuth) {
-
-
     $("#td-error").text("").append(getLoadingMini());
-
-
     var loginname = TouchIDAuth;
-
-
     userInfoData.AuthenticationHeader = Base64.encode(loginname + ":" + "TouchID");
     var _url = serviceRootUrl + "svc.aspx?op=AuthenticateByTouchID&SPUrl=" + spwebRootUrl + MKTSitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&currentURL=" + serviceRootUrl + "main.html"
 
     Jsonp_Call(_url, true, "callbackLoginByTouchID");
-
 }
 
 function callbackLoginByTouchID(data) {
