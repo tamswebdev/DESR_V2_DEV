@@ -126,11 +126,11 @@ function CheckTouchIDAvailable() {
     var RetVal = false;
     if (typeof device != 'undefined')
     {
-        //alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
+        alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
         if (device.platform == 'iOS' && parseInt(device.version.substring(0,device.version.indexOf("."))) >= 8)
 		{
-			var Model=device.model.replace('iPhone','');
-			if (parseInt(Model.substring(0, Model.indexOf("."))) >= 6)
+			var Model=device.model.toLowerCase().replace('iphone','');
+			if (parseInt(Model.substring(0, Model.indexOf(","))) >= 6)
 				RetVal = true;				
 			else
 				RetVal=false;
