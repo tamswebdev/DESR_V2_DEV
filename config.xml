@@ -82,7 +82,7 @@
   <preference name="android-installLocation"    value="auto" />
   <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
   <preference name="StatusBarOverlaysWebView" value="true" />
-  <preference name="StatusBarBackgroundColor" value="#ffffff" />
+  <preference name="StatusBarBackgroundColor" value="#000000" />
 
   <!-- Plugins -->
 
