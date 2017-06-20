@@ -123,31 +123,18 @@ $(document).on("pagebeforeshow", "#pgSearch", function (event) {
 });
 
 function CheckTouchIDAvailable() {
-    var RetVal = false; Model = "";
+    var RetVal = false;
     if (typeof device != 'undefined')
     {
-		//if (typeof touchid != 'undefined')
-        //{
-        alert(device);
-        alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
-            if (device.platform=='iOS' && parseInt(device.version.charAt(0))>=8)
-			{
-				Model=device.model.replace('iPhone','');
-				if (Model.charAt(0)=="6")
-				{
-					//if (parseInt(Model.slice(-1))!=1)
-						RetVal=true;
-				}
-				else if (parseInt(Model.charAt(0))>6)
-				{
-				    RetVal = true;
-				}				
-				else
-				{
-					RetVal=false;
-				}
-			}				
-		//}
+        //alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
+        if (device.platform == 'iOS' && parseInt(device.version.substring(0,device.version.indexOf("."))) >= 8)
+		{
+			var Model=device.model.replace('iPhone','');
+			if (parseInt(Model.substring(0, Model.indexOf("."))) >= 6)
+				RetVal = true;				
+			else
+				RetVal=false;
+		}				
 	}
 	alert(RetVal);
 	return (RetVal);
