@@ -161,6 +161,7 @@ function LoginUser() {
 
 
     /* Umer: To add touch ID */
+    alert("CheckTouchIDAvailable() = " + CheckTouchIDAvailable());
     if (CheckTouchIDAvailable()) {
         localstorage.set("TouchIDAuthDESR", loginname);
     }
@@ -2019,8 +2020,6 @@ function callbackLoginByTouchID(data) {
             userInfoData.TouchIDAuthenticatedDESR = "1";
 
             localstorage.set("userInfoData", userInfoData);
-
-
 
             NavigatePage("#pgHome");
         }
