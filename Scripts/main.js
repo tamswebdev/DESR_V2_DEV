@@ -374,7 +374,7 @@ function callbackPopulateSearchResults(data) {
                 temp += '<table width="100%" cellpadding="1" cellspacing="1">'
                 temp += '<tr><td class="search-result-title">Customer:</td><td class="search-result-value" colspan="2">' + demoRequest.Customer + '</td></tr>';
                 temp += '<tr><td class="search-result-title">Sales Rep:</td><td class="search-result-value">' + demoRequest.SalesRep + '</td>';
-                temp += '<td rowspan="5" valign="bottom" align="right" width="80"><a data-mini="true" data-inline="true" data-role="button" href="javascript: addStatusAction(\'' + demoRequest.DemoRequestID.toString() + '\', \'' + demoRequest.StatusID.toString() + '\');" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-up-c" style="margin-right: 0px;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add<br />Status</span></span></a></td></tr>';
+                temp += '<td rowspan="5" valign="bottom" align="right" width="80"><a data-mini="true" data-inline="true" data-role="button" href="javascript: addStatusAction(\'' + demoRequest.DemoRequestID.toString() + '\', \'' + demoRequest.StatusID.toString() + '\', \'' + demoRequest.SerialNumber.toString() + '\');" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-up-c" style="margin-right: 0px;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add<br />Status</span></span></a></td></tr>';
                 temp += '<tr><td class="search-result-title">Demo Date:</td><td class="search-result-value">' + demoRequest.RequestedDate + '</td></tr>';
                 temp += '<tr><td class="search-result-title">Demo System:</td><td class="search-result-value">' + demoRequest.DemoSystem + '</td></tr>';
                 temp += '<tr><td class="search-result-title">System Serial #:</td><td class="search-result-value">' + demoRequest.SerialNumber + '</td></tr>';
@@ -902,7 +902,7 @@ $(document).on("pagebeforeshow", "#pgAddStatus", function (event) {
     var id = $.urlParam("id");
     if (id > 0) {
         //var _url2 = serviceRootUrl + "svc.aspx?op=GetCatalogById&SPUrl=" + spwebRootUrl +  SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&id=" + id;
-        var _url2 = serviceRootUrl + "svc.aspx?op=GetDemoRequestById&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&id=" + id;
+        var _url2 = serviceRootUrl + "svc.aspx?op=GetDemoRequestById&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&id=" + id + "&serialNumber=" + $.urlParam("serial");
 
         Jsonp_Call(_url2, true, "callbackLoadAddStatus");
     }

@@ -6,12 +6,12 @@ function goHome()
 	NavigatePage("#pgHome");
 }
 
-function addStatusAction(id, sid)
+function addStatusAction(id, sid, serial)
 {
     if (sid != "")
         NavigatePage('#pgAddStatus?sid=' + sid);
     else
-        NavigatePage('#pgAddStatus?id=' + id);
+        NavigatePage('#pgAddStatus?id=' + id + '&serial=' + serial);
 }
   
 function showAboutMeMenu() 
