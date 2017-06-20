@@ -161,7 +161,7 @@ function LoginUser() {
 
 
     /* Umer: To add touch ID */
-    alert("CheckTouchIDAvailable() = " + CheckTouchIDAvailable());
+    //alert("CheckTouchIDAvailable() = " + CheckTouchIDAvailable());
     if (CheckTouchIDAvailable()) {
         localstorage.set("TouchIDAuthDESR", loginname);
     }
@@ -1953,7 +1953,7 @@ function checkUserLogin() {
     if (userInfoData.Expiration <= getTimestamp())
         TouchIDAuthenticated = "0";
 
-    alert(" TouchIDAuth=" + TouchIDAuth + " TouchIDAuthenticated=" + TouchIDAuthenticated);
+    //alert(" TouchIDAuth=" + TouchIDAuth + " TouchIDAuthenticated=" + TouchIDAuthenticated);
     if (TouchIDAuth != "0" && TouchIDAuthenticated != "1" && CheckTouchIDAvailable()) {
 
         // Authenticate user the Touch ID way
