@@ -126,7 +126,7 @@ function CheckTouchIDAvailable() {
     var RetVal = false;
     if (typeof device != 'undefined')
     {
-        alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
+        //alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
         if (device.platform == 'iOS' && parseInt(device.version.substring(0,device.version.indexOf("."))) >= 8)
 		{
 			var Model=device.model.toLowerCase().replace('iphone','');
@@ -136,7 +136,6 @@ function CheckTouchIDAvailable() {
 				RetVal=false;
 		}				
 	}
-	alert(RetVal);
 	return (RetVal);
 }
 
@@ -1953,20 +1952,21 @@ function checkUserLogin() {
     if (userInfoData.Expiration <= getTimestamp())
         TouchIDAuthenticated = "0";
 
+    alert(" TouchIDAuth=" + TouchIDAuth + " TouchIDAuthenticated=" + TouchIDAuthenticated);
     if (TouchIDAuth != "0" && TouchIDAuthenticated != "1" && CheckTouchIDAvailable()) {
 
         // Authenticate user the Touch ID way
         if (typeof touchid != 'undefined') {
             touchid.authenticate(
-                    function (msg) {
-                        LoginUserByTouchID(TouchIDAuth);
-                    },
-                    function (msg) {
-                        TouchIDAuthenticated = "0";
-                        NavigatePage("#pgLogin");
-                    },
-                    "Please scan your fingerprint to login"
-                );
+                function (msg) {
+                    LoginUserByTouchID(TouchIDAuth);
+                },
+                function (msg) {
+                    TouchIDAuthenticated = "0";
+                    NavigatePage("#pgLogin");
+                },
+                "Please scan your fingerprint to login"
+            );
         }
     }
     else {
