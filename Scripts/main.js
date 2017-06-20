@@ -123,50 +123,32 @@ $(document).on("pagebeforeshow", "#pgSearch", function (event) {
 });
 
 function CheckTouchIDAvailable() {
-    /*
 	var RetVal=false;
 	Model="";
-	
-
 	if (typeof device != 'undefined')
 	{
-
 		if (typeof touchid != 'undefined')
 		{
-
-					
-			
-			if (device.platform=='iOS' && parseInt(device.version.charAt(0))>=8)
+            if (device.platform=='iOS' && parseInt(device.version.charAt(0))>=8)
 			{
-								
 				Model=device.model.replace('iPhone','');
 				if (Model.charAt(0)=="6")
 				{
-								
 					//if (parseInt(Model.slice(-1))!=1)
 						RetVal=true;
 				}
 				else if (parseInt(Model.charAt(0))>6)
 				{
-
-					RetVal=true;
-				}
-				
+				    RetVal = true;
+				}				
 				else
 				{
-		
 					RetVal=false;
 				}
-			
-
-			}
-				
+			}				
 		}
 	}
-
 	return (RetVal);
-    */
-    return false;
 }
 
 
@@ -192,11 +174,9 @@ function LoginUser() {
 
     /* Umer: To add touch ID */
     if (CheckTouchIDAvailable()) {
-
         localstorage.set("TouchIDAuthDESR", loginname);
     }
     else {
-
         localstorage.set("TouchIDAuthDESR", "0");
     }
     /* Umer: To add touch ID */
@@ -235,10 +215,7 @@ function callbackLogin(data) {
         else {
             userInfoData = localstorage.getUserInfoDefault();
 
-
-
             if (CheckTouchIDAvailable()) {
-
                 localstorage.set("TouchIDAuthDESR", "0");
             }
             $('#td-error').html("Invalid login and/or password.");
@@ -1981,9 +1958,7 @@ function checkUserLogin() {
     var TouchIDAuthenticated = userInfoData.TouchIDAuthenticatedDESR;
 
     if (CheckTouchIDAvailable()) {
-
         TouchIDAuth = localstorage.get("TouchIDAuthDESR");
-
     }
 
     if (userInfoData.Expiration <= getTimestamp())
@@ -1993,19 +1968,15 @@ function checkUserLogin() {
 
         // Authenticate user the Touch ID way
         if (typeof touchid != 'undefined') {
-
-
-
             touchid.authenticate(
-                function (msg) {
-
-                    LoginUserByTouchID(TouchIDAuth);
-                },
-                function (msg) {
-                    TouchIDAuthenticated = "0";
-                    NavigatePage("#pgLogin");
-                },
-                "Please scan your fingerprint to login"
+                    function (msg) {
+                        LoginUserByTouchID(TouchIDAuth);
+                    },
+                    function (msg) {
+                        TouchIDAuthenticated = "0";
+                        NavigatePage("#pgLogin");
+                    },
+                    "Please scan your fingerprint to login"
                 );
         }
     }
@@ -2075,7 +2046,6 @@ function callbackLoginByTouchID(data) {
             userInfoData.TouchIDAuthenticatedDESR = "0";
             userInfoData = localstorage.getUserInfoDefault();
             if (CheckTouchIDAvailable()) {
-
                 localstorage.set("TouchIDAuthDESR", "0");
             }
 
