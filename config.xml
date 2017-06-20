@@ -81,11 +81,11 @@
   <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
   <preference name="android-installLocation"    value="auto" />
   <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+  <preference name="StatusBarOverlaysWebView" value="false" />
 
   <!-- Plugins -->
 
   <!-- Core plugins -->
-  <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
   <plugin name="cordova-plugin-battery-status" source="npm" />
   <plugin name="cordova-plugin-camera" source="npm" />
   <plugin name="cordova-plugin-media-capture" source="npm" />
@@ -105,7 +105,7 @@
   <plugin name="cordova-plugin-splashscreen" source="npm" />
   <plugin name="cordova-plugin-vibration" source="npm" />
   <plugin name="cordova-plugin-appversion" source="npm" />
- 
+  <plugin name="cordova-plugin-statusbar" source="npm" />
 
   <!-- Third party plugins -->
   <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
