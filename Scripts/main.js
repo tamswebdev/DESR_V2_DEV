@@ -2073,7 +2073,7 @@ function callbackSelectSpecialist(data) {
                 themeDialog: 'a SelectSpecialistPopup',
                 zindex: 2000,
                 blankContent:
-                    "<div style='padding: 15px; overflow-y: scroll;height: " + ($(window).height() - 140) + "px;'>" +
+                    "<div style='padding: 15px; overflow-y: scroll;height: " + ($(window).height() - 160) + "px;'>" +
                         html +
                     "</div>" + "<a id='SelectSpecialistClose' rel='close' data-role='button' href='#'>Close</a>"
             });

@@ -478,7 +478,9 @@
 
  .SelectSpecialistPopup .ui-header {
      min-height: 40px;
+     padding-top: 20px;
  }
+
 
  .SpecialistItem {
     border: 1px solid #ddd;
