@@ -123,11 +123,11 @@ $(document).on("pagebeforeshow", "#pgSearch", function (event) {
 });
 
 function CheckTouchIDAvailable() {
-	var RetVal=false; Model="";
-	if (typeof device != 'undefined')
-	{
-		if (typeof touchid != 'undefined')
-		{
+    var RetVal = false; Model = "";
+    if (typeof device != 'undefined')
+    {
+		//if (typeof touchid != 'undefined')
+		//{
             if (device.platform=='iOS' && parseInt(device.version.charAt(0))>=8)
 			{
 				Model=device.model.replace('iPhone','');
@@ -145,7 +145,7 @@ function CheckTouchIDAvailable() {
 					RetVal=false;
 				}
 			}				
-		}
+		//}
 	}
 	alert(RetVal);
 	return (RetVal);
