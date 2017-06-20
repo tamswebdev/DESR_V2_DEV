@@ -129,7 +129,7 @@ function CheckTouchIDAvailable() {
 		//if (typeof touchid != 'undefined')
         //{
         alert(device);
-        alert(device.platform);
+        alert(device.platform + " -> version:" + device.version + " -> iphone: " + device.model);
             if (device.platform=='iOS' && parseInt(device.version.charAt(0))>=8)
 			{
 				Model=device.model.replace('iPhone','');
