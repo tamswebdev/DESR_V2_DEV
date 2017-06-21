@@ -665,6 +665,9 @@ $(document).on("pagebeforeshow", "#pgAddStatus", function (event) {
             $(this).filter('[value=Yes]').prop('checked', true);
         }
     });
+
+    $(".add-picture-display").html("");
+
     $("table.table-add-status").find("input[type=radio]").checkboxradio("refresh");
     $("#allSoftwareLoadedAndFunctioningReasonTR").hide();
     $("#PhysicalStateCommentsTR").hide();
