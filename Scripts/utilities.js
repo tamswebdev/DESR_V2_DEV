@@ -73,21 +73,21 @@ function setOptions(srcType) {
     return options;
 }
 
-function SnapPhoto() {
+//function SnapPhoto() {
 
-    navigator.camera.getPicture(
-      alert('success'),
-      function (message) { alert('No picture taken'); },
-      {
-          quality: 50,
-          destinationType: navigator.camera.DestinationType.FILE_URI,
-          sourceType: navigator.camera.PictureSourceType.CAMERA,
-          encodingType: navigator.camera.EncodingType.JPEG,
-          targetWidth: 640,
-          targetHeight: 480
-      }
-    );
-}
+//    navigator.camera.getPicture(
+//      alert('success'),
+//      function (message) { alert('No picture taken'); },
+//      {
+//          quality: 50,
+//          destinationType: navigator.camera.DestinationType.FILE_URI,
+//          sourceType: navigator.camera.PictureSourceType.CAMERA,
+//          encodingType: navigator.camera.EncodingType.JPEG,
+//          targetWidth: 640,
+//          targetHeight: 480
+//      }
+//    );
+//}
 
 
 //function openCamera() {
