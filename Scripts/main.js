@@ -78,7 +78,7 @@ $(document).on("pagebeforeshow", "#pgHome", function (event) {
     checkUserLogin();
 
 
-    var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + MKTSitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
+    var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
     Jsonp_Call(_url, false, "");
 
 });
@@ -172,7 +172,7 @@ function LoginUser() {
 
 
     userInfoData.AuthenticationHeader = Base64.encode(loginname + ":" + $('#password').val());
-    var _url = serviceRootUrl + "svc.aspx?op=Authenticate&SPUrl=" + spwebRootUrl + MKTSitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&currentURL=" + serviceRootUrl + "main.html"
+    var _url = serviceRootUrl + "svc.aspx?op=Authenticate&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&currentURL=" + serviceRootUrl + "main.html"
     Jsonp_Call(_url, true, "callbackLogin");
 }
 
@@ -1843,7 +1843,7 @@ function Jsonp_Call_Process(_url, _async, callback) {
 }
 
 function SignOut() {
-    var _url = serviceRootUrl + "svc.aspx?op=LogOut&SPUrl=" + spwebRootUrl + MKTSitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
+    var _url = serviceRootUrl + "svc.aspx?op=LogOut&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
     Jsonp_Call(_url, false, "");
 
     userInfoData = localstorage.clear("userInfoData");
@@ -1947,7 +1947,7 @@ function LoginUserByTouchID(TouchIDAuth) {
     $("#td-error").text("").append(getLoadingMini());
     var loginname = TouchIDAuth;
     userInfoData.AuthenticationHeader = Base64.encode(loginname + ":" + "TouchID");
-    var _url = serviceRootUrl + "svc.aspx?op=AuthenticateByTouchID&SPUrl=" + spwebRootUrl + MKTSitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&currentURL=" + serviceRootUrl + "main.html"
+    var _url = serviceRootUrl + "svc.aspx?op=AuthenticateByTouchID&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&currentURL=" + serviceRootUrl + "main.html"
 
     Jsonp_Call(_url, true, "callbackLoginByTouchID");
 }
