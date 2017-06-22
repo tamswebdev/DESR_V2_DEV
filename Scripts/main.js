@@ -40,9 +40,9 @@ function onDeviceReady() {
     //ToggleTheme(0);
 
     if (typeof device != 'undefined')
-        deviceInfo = device.model + '|' + device.platform + '|' + device.version + '|App:' + AppVersion;
+        deviceInfo = device.model + '|' + device.platform + '|' + device.version + '|App:' + AppVersion.version;
     else
-        deviceInfo = "Browser:" + navigator.browserDetail + '|App:' + AppVersion;
+        deviceInfo = "Browser:" + navigator.browserDetail + '|App:' + AppVersion.version;
 
 
     try {
