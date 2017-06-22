@@ -534,3 +534,14 @@
     font-size: 12px;
     cursor: pointer;
 }
+
+ .app-version-footer {
+    font-size: 0.6em;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+ }

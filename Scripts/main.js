@@ -81,6 +81,7 @@ $(document).on("pagebeforeshow", "#pgHome", function (event) {
     var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
     Jsonp_Call(_url, false, "");
 
+    $(".app-version-footer-text").html(AppVersion.version);
 });
 
 
