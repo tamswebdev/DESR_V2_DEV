@@ -592,6 +592,10 @@ function callbackPopulateHistories(data) {
             if (_id != "" && parseInt(_id) > 0) {
                 $("div.itemid_" + _id).removeClass("history-collapsed").addClass("history-expanded");
                 $("div.itemid_" + _id).next().show();
+
+                var tempobj = $("div.itemid_" + _id).closest("td.catalog-info").find(".history-item-photo-section");
+                var tempstatusid = tempobj.attr("data-status-id");
+                LoadingPhotos(tempobj, tempstatusid, false);
             }
         }
         else {
