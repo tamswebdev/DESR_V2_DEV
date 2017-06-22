@@ -655,7 +655,7 @@ $(document).on("pagebeforeshow", "#pgAddStatus", function (event) {
         if ($(this).attr("type") == "radio") {
             $(this).checkboxradio();
             $(this).checkboxradio("refresh");
-            $(this).filter('[value=Yes]').prop('checked', true);
+            $(this).filter('[checked=checked]').prop('checked', true);
         }
     });
 
@@ -2080,9 +2080,9 @@ function callbackSelectSpecialist(data) {
     }
 }
 
-function capturePhotoWithFile() {
-    navigator.camera.getPicture(onPhotoFileSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-}
+//function capturePhotoWithFile() {
+//    navigator.camera.getPicture(onPhotoFileSuccess, onPhotoFileFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+//}
 
 function SelectThisSpecialist(id, displayname, loginname) {
     userInfoData.CurrentSpecialist = id + "|" + displayname + "|" + loginname;
@@ -2127,7 +2127,7 @@ function onPhotoDataSuccess(imageData) {
 }
 
 function onPhotoDataFail(message) {
-    alert('Failed to capture photo because: ' + message);
+    //alert('Failed to capture photo because: ' + message);
 }
 
 var DeletingPhotos = [];
