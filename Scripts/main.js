@@ -2103,37 +2103,71 @@ function SelectThisSpecialist(id, displayname, loginname) {
 
 
 
+//function capturePhotoWithData() {
+//    // Take picture using device camera and retrieve image as base64-encoded string
+//    navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
+//        quality: 75,
+//        destinationType: destinationType.DATA_URL,
+//        correctOrientation: true,
+//        targetWidth: 1280,
+//        targetHeight: 1280
+//    });
+//}
+
+//function onPhotoDataSuccess(imageData) {
+
+//    var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
+//    newPhoto.find("img").attr("src", "data:image/jpeg;base64," + imageData);
+
+//    var newIndex = 1;
+//    $(".add-picture-display").find("img").each(function (index) {
+//        try {
+//            var temp = $(this).attr("data-name");
+//            if (temp.indexOf(".") > 0) {
+//                temp = temp.split(".")[0];
+//                temp = temp.split("-")[2];
+//                newIndex = Math.max(parseInt(temp) + 1, newIndex);
+//            }
+//        }
+//        catch(err) {}
+//    });
+//    newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
+
+//    $(".add-picture-display").append(newPhoto);
+//}
+
 function capturePhotoWithData() {
-    // Take picture using device camera and retrieve image as base64-encoded string
-    navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
-        quality: 75,
-        destinationType: destinationType.DATA_URL,
-        correctOrientation: true,
-        targetWidth: 1280,
-        targetHeight: 1280
-    });
-}
+        // Take picture using device camera and retrieve image as base64-encoded string
+        navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
+            quality: 75,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            targetWidth: 1280,
+            targetHeight: 1280
+        });
+    }
 
-function onPhotoDataSuccess(imageData) {
-    var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
-    newPhoto.find("img").attr("src", "data:image/jpeg;base64," + imageData);
+    function onPhotoDataSuccess(imageData) {
 
-    var newIndex = 1;
-    $(".add-picture-display").find("img").each(function (index) {
-        try {
-            var temp = $(this).attr("data-name");
-            if (temp.indexOf(".") > 0) {
-                temp = temp.split(".")[0];
-                temp = temp.split("-")[2];
-                newIndex = Math.max(parseInt(temp) + 1, newIndex);
+        var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
+        newPhoto.find("img").attr("src", imageData);
+
+        var newIndex = 1;
+        $(".add-picture-display").find("img").each(function (index) {
+            try {
+                var temp = $(this).attr("data-name");
+                if (temp.indexOf(".") > 0) {
+                    temp = temp.split(".")[0];
+                    temp = temp.split("-")[2];
+                    newIndex = Math.max(parseInt(temp) + 1, newIndex);
+                }
             }
-        }
-        catch(err) {}
-    });
-    newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
+            catch(err) {}
+        });
+        newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
 
-    $(".add-picture-display").append(newPhoto);
-}
+        $(".add-picture-display").append(newPhoto);
+    }
 
 function onPhotoDataFail(message) {
     if (message.toLowerCase() != "no image selected") {
