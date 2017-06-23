@@ -2184,7 +2184,16 @@ function DeletingPhoto(imageDiv) {
 
 
 
-
+function OpenNativeSettings() {
+    if (typeof cordova.plugins.settings.openSetting != undefined) {
+        cordova.plugins.settings.open(function () {
+            console.log("opened settings")
+        },
+        function () {
+            console.log("failed to open settings")
+        });
+    }
+}
 
 
 

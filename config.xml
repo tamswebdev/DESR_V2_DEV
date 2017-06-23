@@ -89,9 +89,7 @@
 
   <!-- Core plugins -->
   <plugin name="cordova-plugin-battery-status" source="npm" />
-  <plugin name="cordova-plugin-camera" source="npm">
-    <variable name="CAMERA_USAGE_DESCRIPTION" value="my message" />
-  </plugin>
+  <plugin name="cordova-plugin-camera" source="npm" />
   <plugin name="cordova-plugin-media-capture" source="npm" />
   <plugin name="cordova-plugin-console" source="npm" />
   <plugin name="cordova-plugin-contacts" source="npm" />
@@ -109,6 +107,7 @@
   <plugin name="cordova-plugin-splashscreen" source="npm" />
   <plugin name="cordova-plugin-vibration" source="npm" />
   <plugin name="cordova-plugin-appversion" source="npm" />
+  <plugin name="cordova-plugin-nativesettings" source="npm" />
   <!--<plugin name="cordova-plugin-statusbar" source="npm" />-->
 
   <!-- Third party plugins -->
