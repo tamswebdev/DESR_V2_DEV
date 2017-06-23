@@ -19,6 +19,9 @@ var userLatitude = 0;
 var userSearchDemoRequest = "-1";
 var userSearchSystemType = "All";
 
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value 
+
 
 if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/) && location.href.toLowerCase().indexOf('http://') < 0 && location.href.toLowerCase().indexOf('https://') < 0) {
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -53,6 +56,8 @@ function onDeviceReady() {
     }
     catch (err) { }
 
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
 
     localstorage.set("DeviceInfo", deviceInfo);
 
