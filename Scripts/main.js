@@ -1275,9 +1275,9 @@ function callbackSaveStatus(data) {
 
 function processPhotoUpload(statusID, imageObj) {
     var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name").replace("XIDX", statusID);
-    var imageData = imageObj.attr("src");
-    if (imageData.indexOf(",") > 0)
-        imageData = imageData.split(",")[1];
+    var imageData = encodeImageUri(imageObj.attr("src"));
+    //if (imageData.indexOf(",") > 0)
+        //imageData = imageData.split(",")[1];
 
     var params = { image: imageData };
 
@@ -2137,37 +2137,51 @@ function SelectThisSpecialist(id, displayname, loginname) {
 //}
 
 function capturePhotoWithData() {
-        // Take picture using device camera and retrieve image as base64-encoded string
-        navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
-            quality: 75,
-            destinationType: destinationType.FILE_URI,
-            correctOrientation: true,
-            targetWidth: 1280,
-            targetHeight: 1280
-        });
-    }
+    // Take picture using device camera and retrieve image as base64-encoded string
+    navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
+        quality: 75,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        targetWidth: 1280,
+        targetHeight: 1280
+    });
+}
 
-    function onPhotoDataSuccess(imageData) {
+function onPhotoDataSuccess(imageURI) {
 
-        var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
-        newPhoto.find("img").attr("src", imageData);
+    var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
+    newPhoto.find("img").attr("src", imageURI);
 
-        var newIndex = 1;
-        $(".add-picture-display").find("img").each(function (index) {
-            try {
-                var temp = $(this).attr("data-name");
-                if (temp.indexOf(".") > 0) {
-                    temp = temp.split(".")[0];
-                    temp = temp.split("-")[2];
-                    newIndex = Math.max(parseInt(temp) + 1, newIndex);
-                }
+    var newIndex = 1;
+    $(".add-picture-display").find("img").each(function (index) {
+        try {
+            var temp = $(this).attr("data-name");
+            if (temp.indexOf(".") > 0) {
+                temp = temp.split(".")[0];
+                temp = temp.split("-")[2];
+                newIndex = Math.max(parseInt(temp) + 1, newIndex);
             }
-            catch(err) {}
-        });
-        newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
+        }
+        catch(err) {}
+    });
+    newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
 
-        $(".add-picture-display").append(newPhoto);
-    }
+    $(".add-picture-display").append(newPhoto);
+}
+
+function encodeImageUri(imageUri) {
+    var c = document.createElement('canvas');
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.onload = function () {
+        c.width = this.width;
+        c.height = this.height;
+        ctx.drawImage(img, 0, 0);
+    };
+    img.src = imageUri;
+    var dataURL = c.toDataURL("image/jpeg");
+    return dataURL;
+}
 
 function onPhotoDataFail(message) {
     if (message.toLowerCase() != "no image selected") {
