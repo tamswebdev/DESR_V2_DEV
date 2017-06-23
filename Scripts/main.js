@@ -2136,7 +2136,21 @@ function onPhotoDataSuccess(imageData) {
 }
 
 function onPhotoDataFail(message) {
-    alert('Failed because: ' + message);
+    if (message.toLowerCase() != "no image selected") {
+        var alertMessage = '<p><b>Failed because:</b></p><p>' + message + "</p>";
+        $('<div>').simpledialog2({
+            mode: 'blank',
+            headerText: 'Alert',
+            headerClose: false,
+            transition: 'flip',
+            themeDialog: 'a',
+            width: 300,
+            zindex: 2000,
+            blankContent:
+                "<div style='padding: 15px;'><p>" + alertMessage + "</p>" +
+                "<table width='100%' cellpadding='0' cellspacing='0'><tr><td><a rel='close' data-role='button' href='#'>OK</a></td></tr></table></div>"
+        });
+    }
 }
 
 var DeletingPhotos = [];
@@ -2187,10 +2201,10 @@ function DeletingPhoto(imageDiv) {
 function OpenNativeSettings() {
     if (typeof cordova.plugins.settings.openSetting != undefined) {
         cordova.plugins.settings.open(function () {
-            console.log("opened settings")
+            //console.log("opened settings")
         },
         function () {
-            console.log("failed to open settings")
+            //console.log("failed to open settings")
         });
     }
 }
