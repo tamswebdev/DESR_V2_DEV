@@ -2137,7 +2137,7 @@ function onPhotoDataSuccess(imageData) {
 
 function onPhotoDataFail(message) {
     if (message.toLowerCase() != "no image selected") {
-        var alertMessage = '<p><b>Failed because:</b></p><p>' + message + "</p>";
+        var alertMessage = '<p><b>Failed because:</b></p><p>"' + message + '"</p>';
         $('<div>').simpledialog2({
             mode: 'blank',
             headerText: 'Alert',
@@ -2147,7 +2147,7 @@ function onPhotoDataFail(message) {
             width: 300,
             zindex: 2000,
             blankContent:
-                "<div style='padding: 15px;'><p>" + alertMessage + "</p>" +
+                "<div style='padding: 15px;text-align:center;'><p>" + alertMessage + "</p>" +
                 "<table width='100%' cellpadding='0' cellspacing='0'><tr><td><a rel='close' data-role='button' href='#'>OK</a></td></tr></table></div>"
         });
     }
