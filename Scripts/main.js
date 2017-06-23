@@ -2131,7 +2131,7 @@ function onPhotoDataSuccess(imageData) {
 }
 
 function onPhotoDataFail(message) {
-    //alert('Failed to capture photo because: ' + message);
+    alert('Failed to capture photo because: ' + message);
 }
 
 var DeletingPhotos = [];
