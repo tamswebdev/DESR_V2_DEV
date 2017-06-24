@@ -1275,10 +1275,7 @@ function callbackSaveStatus(data) {
 
 function processPhotoUpload(statusID, imageObj) {
     var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name").replace("XIDX", statusID);
-    var imageData = encodeImageUri(imageObj.attr("src"));
-    //if (imageData.indexOf(",") > 0)
-        //imageData = imageData.split(",")[1];
-
+    var imageData = imageObj.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     var params = { image: imageData };
 
     $.post(url, params, function (data) {
@@ -2103,54 +2100,21 @@ function SelectThisSpecialist(id, displayname, loginname) {
 
 
 
-//function capturePhotoWithData() {
-//    // Take picture using device camera and retrieve image as base64-encoded string
-//    navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
-//        quality: 75,
-//        destinationType: destinationType.DATA_URL,
-//        correctOrientation: true,
-//        targetWidth: 1280,
-//        targetHeight: 1280
-//    });
-//}
-
-//function onPhotoDataSuccess(imageData) {
-
-//    var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
-//    newPhoto.find("img").attr("src", "data:image/jpeg;base64," + imageData);
-
-//    var newIndex = 1;
-//    $(".add-picture-display").find("img").each(function (index) {
-//        try {
-//            var temp = $(this).attr("data-name");
-//            if (temp.indexOf(".") > 0) {
-//                temp = temp.split(".")[0];
-//                temp = temp.split("-")[2];
-//                newIndex = Math.max(parseInt(temp) + 1, newIndex);
-//            }
-//        }
-//        catch(err) {}
-//    });
-//    newPhoto.find("img").attr("data-name", "DESR-" + ($.urlParam("sid") != "" ? $.urlParam("sid"): "XIDX") + "-" + newIndex + ".jpg");
-
-//    $(".add-picture-display").append(newPhoto);
-//}
-
 function capturePhotoWithData() {
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, {
         quality: 75,
-        destinationType: destinationType.FILE_URI,
+        destinationType: destinationType.DATA_URL,
         correctOrientation: true,
         targetWidth: 1280,
         targetHeight: 1280
     });
 }
 
-function onPhotoDataSuccess(imageURI) {
+function onPhotoDataSuccess(imageData) {
 
     var newPhoto = $('<div class="captured-photo-div"><span class="captured-photo-delete" onclick="DeletingPhoto($(this).parent());">X</span><img data-id="" data-name="" class="captured-photo" src="" /></div>');
-    newPhoto.find("img").attr("src", imageURI);
+    newPhoto.find("img").attr("src", "data:image/jpeg;base64," + imageData);
 
     var newIndex = 1;
     $(".add-picture-display").find("img").each(function (index) {
@@ -2169,18 +2133,37 @@ function onPhotoDataSuccess(imageURI) {
     $(".add-picture-display").append(newPhoto);
 }
 
+
 function encodeImageUri(imageUri) {
+    console.log(imageUri);
     var c = document.createElement('canvas');
+    $(".add-status-buttons").append(c);
     var ctx = c.getContext("2d");
     var img = new Image();
     img.onload = function () {
-        c.width = this.width;
-        c.height = this.height;
-        ctx.drawImage(img, 0, 0);
+        //console.log(this.width + " x " + this.height);
+        //c.width = this.width;
+        //c.height = this.height;
+        //ctx.drawImage(img, 0, 0);
+
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        var dataURL;
+        canvas.height = this.height;
+        canvas.width = this.width;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL("image/jpeg", 1.0);
+        callback1111(dataURL);
+        $(".add-status-buttons").append(canvas);
     };
     img.src = imageUri;
-    var dataURL = c.toDataURL("image/jpeg");
-    return dataURL;
+    var dataURL = c.toDataURL("image/jpeg", 1.0);
+    alert(dataURL);
+    return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+}
+
+function callback1111(data) {
+    console.log(data);
 }
 
 function onPhotoDataFail(message) {
