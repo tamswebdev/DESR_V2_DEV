@@ -79,8 +79,11 @@ $(document).on("pagebeforeshow", "#pgHome", function (event) {
     checkUserLogin();
 
     if (userInfoData != null && userInfoData.AuthenticationHeader != null) {
-        var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
-        Jsonp_Call(_url, false, "");
+        try {
+            var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
+            Jsonp_Call(_url, false, "");
+        }
+        catch (err) { }
     }
 
     $(".app-version-footer-text").html(AppVersion.version);
@@ -1837,7 +1840,6 @@ function SignOut() {
 }
 
 function checkUserLogin() {
-    alert("checkUserLogin");
     $(".network-unreachable").remove();
 
     checkConnection();
