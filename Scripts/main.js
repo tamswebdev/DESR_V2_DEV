@@ -72,7 +72,7 @@ function onDeviceReady() {
     //LoadDemoRequestsDropDown();
     isPageLoadReady = true;
 
-    NavigatePage("#pgHome");
+    NavigatePage("#pgLogin");
 };
 
 $(document).on("pagebeforeshow", "#pgHome", function (event) {
