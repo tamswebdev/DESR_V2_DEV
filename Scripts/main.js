@@ -2146,9 +2146,18 @@ function onPhotoURISuccess(imageUri) {
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
         var dataURL;
-        canvas.height = 300; //this.height;
-        canvas.width = 300;//this.width;
-        ctx.drawImage(this, 0, 0);
+
+        var wrh = this.width / this.height;
+        var newWidth = 1280;
+        var newHeight = newWidth / wrh;
+        if (newHeight > 1280) {
+            newHeight = 1280;
+            newWidth = newHeight * wrh;
+        }
+
+        canvas.height = newHeight; //this.height;
+        canvas.width = newWidth;//this.width;
+        ctx.drawImage(this, 0, 0, newWidth, newHeight);
         dataURL = canvas.toDataURL("image/jpeg", 1.0);
         onPhotoDataSuccess(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/ig, ""));
     };
