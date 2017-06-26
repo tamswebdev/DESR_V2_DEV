@@ -668,7 +668,7 @@ $(document).on("pagebeforeshow", "#pgAddStatus", function (event) {
         }
     });
 
-    $(".add-picture-display").html("");
+    //$(".add-picture-display").html("");
 
     $("table.table-add-status").find("input[type=radio]").checkboxradio("refresh");
     $("#allSoftwareLoadedAndFunctioningReasonTR").hide();
@@ -1249,8 +1249,6 @@ function callbackSaveStatus(data) {
     try {
 
         if (data.d.results.length > 0 && parseInt(data.d.results[0]) > 0) {
-            //alert(data.d.results[0]);
-
             var statusID = parseInt(data.d.results[0]);
             photosToUpload = [];
             $(".add-picture-display").find("img").each(function (index) {
@@ -1267,7 +1265,7 @@ function callbackSaveStatus(data) {
                 NavigatePage('#pgHistory');
         }
         else {
-            alert(data);
+            //alert(data);
         }
     }
     catch (err) { }
@@ -1275,9 +1273,7 @@ function callbackSaveStatus(data) {
 
 function processPhotoUpload(statusID, imageObj) {
     var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name").replace("XIDX", statusID);
-    var imageData = imageObj.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-    alert(url);
-    alert(imageData);
+    var imageData = imageObj.attr("src").replace(/^data:image\/(png|jpg|jpeg);base64,/ig, "");
     var params = { image: imageData };
 
     $.post(url, params, function (data) {
@@ -2160,7 +2156,6 @@ function encodeImageUri(imageUri) {
     };
     img.src = imageUri;
     var dataURL = c.toDataURL("image/jpeg", 1.0);
-    alert(dataURL);
     return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
 }
 
