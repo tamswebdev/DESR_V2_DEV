@@ -1276,6 +1276,7 @@ function callbackSaveStatus(data) {
 function processPhotoUpload(statusID, imageObj) {
     var url = serviceRootUrl + "photo.ashx?op=UploadPhoto&statusid=" + statusID + "&authinfo=" + userInfoData.AuthenticationHeader + "&spurl=" + spwebRootUrl + SitePath + "&filename=" + imageObj.attr("data-name").replace("XIDX", statusID);
     var imageData = imageObj.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    alert(imageData);
     var params = { image: imageData };
 
     $.post(url, params, function (data) {
