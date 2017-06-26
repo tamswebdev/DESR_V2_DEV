@@ -2136,7 +2136,9 @@ function getPhotoWithData() {
     navigator.camera.getPicture(onPhotoURISuccess, onPhotoDataFail, {
         quality: 50,
         destinationType: destinationType.FILE_URI,
-        sourceType: pictureSource.PHOTOLIBRARY
+        sourceType: pictureSource.PHOTOLIBRARY,
+        targetWidth: 1280,
+        targetHeight: 1280
     });
 }
 
@@ -2155,8 +2157,8 @@ function onPhotoURISuccess(imageUri) {
             newWidth = newHeight * wrh;
         }
 
-        canvas.height = newHeight; //this.height;
-        canvas.width = newWidth;//this.width;
+        canvas.height = this.height;
+        canvas.width = this.width;
         ctx.drawImage(this, 0, 0, newWidth, newHeight);
         dataURL = canvas.toDataURL("image/jpeg", 1.0);
         onPhotoDataSuccess(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/ig, ""));
