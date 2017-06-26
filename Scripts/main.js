@@ -2149,14 +2149,6 @@ function onPhotoURISuccess(imageUri) {
         var ctx = canvas.getContext('2d');
         var dataURL;
 
-        var wrh = this.width / this.height;
-        var newWidth = 1280;
-        var newHeight = newWidth / wrh;
-        if (newHeight > 1280) {
-            newHeight = 1280;
-            newWidth = newHeight * wrh;
-        }
-
         canvas.height = this.height;
         canvas.width = this.width;
         ctx.drawImage(this, 0, 0, newWidth, newHeight);
