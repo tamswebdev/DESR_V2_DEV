@@ -2150,7 +2150,7 @@ function onPhotoURISuccess(imageUri) {
         canvas.width = this.width;
         ctx.drawImage(this, 0, 0);
         dataURL = canvas.toDataURL("image/jpeg", 1.0);
-
+        alert(dataURL);
         onPhotoDataSuccess(dataURL);
     };
     img.src = imageUri;
