@@ -1267,7 +1267,7 @@ function callbackSaveStatus(data) {
                 NavigatePage('#pgHistory');
         }
         else {
-            //
+            alert(data);
         }
     }
     catch (err) { }
