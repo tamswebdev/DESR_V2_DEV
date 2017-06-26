@@ -45,6 +45,7 @@ function onDeviceReady() {
 
 
     try {
+        alert("position");
         navigator.geolocation.watchPosition(
 			function (position) {
 			    userLongitude = position.coords.longitude;
@@ -1764,26 +1765,6 @@ function callbackSaveFeedback(data) {
     }
     catch (err) { }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /******************* Redirect Page ***********************/
