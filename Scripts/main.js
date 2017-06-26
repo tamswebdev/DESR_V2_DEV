@@ -72,6 +72,7 @@ function onDeviceReady() {
     //LoadDemoRequestsDropDown();
     isPageLoadReady = true;
 
+    NavigatePage("#pgHome");
 };
 
 $(document).on("pagebeforeshow", "#pgHome", function (event) {
@@ -1836,7 +1837,7 @@ function SignOut() {
 }
 
 function checkUserLogin() {
-
+    alert("checkUserLogin");
     $(".network-unreachable").remove();
 
     checkConnection();
