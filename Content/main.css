@@ -502,6 +502,10 @@
      text-align: center;
  }
 
+ .add-picture-button-td {
+     text-align: left;
+ }
+
  .add-picture-button
  {
     color: green !important;

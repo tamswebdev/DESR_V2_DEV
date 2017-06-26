@@ -668,7 +668,7 @@ $(document).on("pagebeforeshow", "#pgAddStatus", function (event) {
         }
     });
 
-    //$(".add-picture-display").html("");
+    $(".add-picture-display").html("");
 
     $("table.table-add-status").find("input[type=radio]").checkboxradio("refresh");
     $("#allSoftwareLoadedAndFunctioningReasonTR").hide();
@@ -2131,19 +2131,18 @@ function onPhotoDataSuccess(imageData) {
     $(".add-picture-display").append(newPhoto);
 }
 
+function getPhotoWithData() {
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(onPhotoURISuccess, onPhotoDataFail, {
+        quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: pictureSource.PHOTOLIBRARY
+    });
+}
 
-function encodeImageUri(imageUri) {
-    console.log(imageUri);
-    var c = document.createElement('canvas');
-    $(".add-status-buttons").append(c);
-    var ctx = c.getContext("2d");
+function onPhotoURISuccess(imageUri) {
     var img = new Image();
     img.onload = function () {
-        //console.log(this.width + " x " + this.height);
-        //c.width = this.width;
-        //c.height = this.height;
-        //ctx.drawImage(img, 0, 0);
-
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
         var dataURL;
@@ -2151,17 +2150,13 @@ function encodeImageUri(imageUri) {
         canvas.width = this.width;
         ctx.drawImage(this, 0, 0);
         dataURL = canvas.toDataURL("image/jpeg", 1.0);
-        callback1111(dataURL);
-        $(".add-status-buttons").append(canvas);
+
+        onPhotoDataSuccess(dataURL);
     };
     img.src = imageUri;
-    var dataURL = c.toDataURL("image/jpeg", 1.0);
-    return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
 }
 
-function callback1111(data) {
-    console.log(data);
-}
+
 
 function onPhotoDataFail(message) {
     if (message.toLowerCase() != "no image selected") {
