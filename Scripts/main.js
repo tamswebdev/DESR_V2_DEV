@@ -2146,8 +2146,8 @@ function onPhotoURISuccess(imageUri) {
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
         var dataURL;
-        canvas.height = this.height;
-        canvas.width = this.width;
+        canvas.height = 300; //this.height;
+        canvas.width = 300;//this.width;
         ctx.drawImage(this, 0, 0);
         dataURL = canvas.toDataURL("image/jpeg", 1.0);
         onPhotoDataSuccess(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/ig, ""));
