@@ -76,13 +76,14 @@ function onDeviceReady() {
 };
 
 $(document).on("pagebeforeshow", "#pgHome", function (event) {
+    alert("home");
     checkUserLogin();
 
 
-    var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
-    Jsonp_Call(_url, false, "");
+    //var _url = serviceRootUrl + "svc.aspx?op=LogHomePage&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader;
+    //Jsonp_Call(_url, false, "");
 
-    $(".app-version-footer-text").html(AppVersion.version);
+    //$(".app-version-footer-text").html(AppVersion.version);
 });
 
 
@@ -92,7 +93,7 @@ $(document).on("pagebeforeshow", "#pgHelp", function (event) {
 });
 
 $(document).on("pagebeforeshow", "#pgLogin", function (event) {
-
+    alert("pgLogin");
     checkUserLogin();
     $("#td-error").text("");
 
