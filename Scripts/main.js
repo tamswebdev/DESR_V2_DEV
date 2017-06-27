@@ -44,20 +44,20 @@ function onDeviceReady() {
         deviceInfo = "Browser:" + navigator.browserDetail + '|App:' + AppVersion.version;
 
 
-    try {
-        navigator.geolocation.watchPosition(
-			function (position) {
-			    try {
-			        userLongitude = position.coords.longitude;
-			        userLatitude = position.coords.latitude;
-			    }
-			    catch (err) { }
-			},
-			function (error) {
-			}
-		);
-    }
-    catch (err) { }
+    //try {
+    //    navigator.geolocation.watchPosition(
+	//		function (position) {
+	//		    try {
+	//		        userLongitude = position.coords.longitude;
+	//		        userLatitude = position.coords.latitude;
+	//		    }
+	//		    catch (err) { }
+	//		},
+	//		function (error) {
+	//		}
+	//	);
+    //}
+    //catch (err) { }
 
     pictureSource = navigator.camera.PictureSourceType;
     destinationType = navigator.camera.DestinationType;
