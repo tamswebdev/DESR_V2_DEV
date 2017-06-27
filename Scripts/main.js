@@ -82,6 +82,7 @@ $(document).on("pagebeforeshow", "#pgHelp", function (event) {
 $(document).on("pagebeforeshow", "#pgLogin", function (event) {
     checkUserLogin();
     $("#td-error").text("");
+    $("#spanLoginAppVersion").text(AppVersion.version);
 
     $('#password').keyup(function (event) {
         if (event.which == 13) {
