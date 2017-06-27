@@ -214,7 +214,7 @@ function RefrestApp()
 }
 
 function RefrestPage() {
-    location.reload(true);
+    location.reload(false);
 }
 
 

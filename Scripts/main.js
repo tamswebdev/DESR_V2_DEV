@@ -2082,6 +2082,7 @@ function SelectThisSpecialist(id, displayname, loginname) {
     localstorage.set("userInfoData", userInfoData);
     $('#SelectSpecialistClose').trigger('click');
     RefrestPage();
+    //NavigatePage("#pgHome");
 }
 
 
