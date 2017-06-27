@@ -23,7 +23,7 @@
         version   = "5.4.18">
 
   <!--<name>DEV - DESR V2</name>-->
-  <name>TAMS UL Mobile Apps</name>
+  <name>DEV - DESR V2</name>
   <description>
     A mobile app for UL. Collection of features to improve portability, efficiency and productivity. Currently includes Demo Equipment Status Request App and UL Customer Feeback App. Author: Umer Pasha
   </description>
