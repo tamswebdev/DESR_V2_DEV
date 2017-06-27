@@ -78,6 +78,7 @@ $(document).on("pagebeforeshow", "#pgHome", function (event) {
 $(document).on("pagebeforeshow", "#pgHelp", function (event) {
     checkUserLogin();
     $("#td-error").text("");
+    $("#spanHelpAppVersion").text(AppVersion.version);
 });
 
 $(document).on("pagebeforeshow", "#pgLogin", function (event) {
