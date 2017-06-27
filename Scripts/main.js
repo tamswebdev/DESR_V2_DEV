@@ -44,28 +44,12 @@ function onDeviceReady() {
         deviceInfo = "Browser:" + navigator.browserDetail + '|App:' + AppVersion.version;
 
 
-    //try {
-    //    navigator.geolocation.watchPosition(
-	//		function (position) {
-	//		    try {
-	//		        userLongitude = position.coords.longitude;
-	//		        userLatitude = position.coords.latitude;
-	//		    }
-	//		    catch (err) { }
-	//		},
-	//		function (error) {
-	//		}
-	//	);
-    //}
-    //catch (err) { }
+    
 
     pictureSource = navigator.camera.PictureSourceType;
     destinationType = navigator.camera.DestinationType;
 
     localstorage.set("DeviceInfo", deviceInfo);
-
-
-
 
     checkUserLogin();
     //initDemoRequestsDropDown();
@@ -1922,6 +1906,23 @@ function checkUserLogin() {
     }
 
     ///// ***** (E) Umer 5/11/2016 : Comment this section to disable touch id */
+
+    if (isUserLogin) {
+        try {
+            navigator.geolocation.watchPosition(
+        		function (position) {
+        		    try {
+        		        userLongitude = position.coords.longitude;
+        		        userLatitude = position.coords.latitude;
+        		    }
+        		    catch (err) { }
+        		},
+        		function (error) {
+        		}
+        	);
+        }
+        catch (err) { }
+    }
 
     CheckAppVersion();
 }
