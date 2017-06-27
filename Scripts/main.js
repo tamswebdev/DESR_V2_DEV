@@ -1870,8 +1870,8 @@ function checkUserLogin() {
         TouchIDAuthenticated = "0";
 
     //alert(" TouchIDAuth=" + TouchIDAuth + " TouchIDAuthenticated=" + TouchIDAuthenticated);
-    if (TouchIDAuth != "0" && TouchIDAuthenticated != "1" && CheckTouchIDAvailable() && userInfoData.AuthenticationHeader != null && userInfoData.AuthenticationHeader != "") {
-
+    if (TouchIDAuth != "0" && TouchIDAuthenticated != "1" && CheckTouchIDAvailable()) {
+        alert(TouchIDAuth);
         // Authenticate user the Touch ID way
         if (typeof touchid != 'undefined') {
             touchid.authenticate(
