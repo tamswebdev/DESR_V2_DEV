@@ -2081,8 +2081,8 @@ function SelectThisSpecialist(id, displayname, loginname) {
     userInfoData.CurrentSpecialist = id + "|" + displayname + "|" + loginname;
     localstorage.set("userInfoData", userInfoData);
     $('#SelectSpecialistClose').trigger('click');
-    RefrestPage();
-    //NavigatePage("#pgHome");
+    //RefrestPage();
+    NavigatePage("#pgHome");
 }
 
 
