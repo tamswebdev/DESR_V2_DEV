@@ -2080,6 +2080,8 @@ function callbackSelectSpecialist(data) {
 function SelectThisSpecialist(id, displayname, loginname) {
     userInfoData.CurrentSpecialist = id + "|" + displayname + "|" + loginname;
     localstorage.set("userInfoData", userInfoData);
+    $(".spanCurrentSpecialist").text("" + GetTokenIndex(userInfoData.CurrentSpecialist, "|", 1));
+
     $('#SelectSpecialistClose').trigger('click');
     //RefrestPage();
     NavigatePage("#pgHome");
