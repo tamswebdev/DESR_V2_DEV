@@ -14,7 +14,6 @@ var deviceInfo = "";
 
 var userLongitude = 0;
 var userLatitude = 0;
-var userGeoLocationWatch = null
 
 //var userSearchText = "";
 var userSearchDemoRequest = "-1";
@@ -1909,9 +1908,9 @@ function checkUserLogin() {
 
     ///// ***** (E) Umer 5/11/2016 : Comment this section to disable touch id */
 
-    if (isUserLogin && userGeoLocationWatch == null) {
+    if (isUserLogin) {
         try {
-            userGeoLocationWatch = navigator.geolocation.watchPosition(
+            navigator.geolocation.getCurrentPosition(
         		function (position) {
         		    try {
         		        userLongitude = position.coords.longitude;
@@ -1920,7 +1919,8 @@ function checkUserLogin() {
         		    catch (err) { }
         		},
         		function (error) {
-        		}
+        		}, 
+                { timeout: 10000 }
         	);
         }
         catch (err) { }
