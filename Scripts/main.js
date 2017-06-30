@@ -1254,8 +1254,10 @@ function callbackSaveStatus(data) {
                 processPhotoDelete(statusID);
             else if (photosToUpload.length > 0)
                 processPhotoUpload(statusID, photosToUpload.shift());
-            else
-                NavigatePage('#pgHistory');
+            else {
+                //NavigatePage('#pgHistory');
+                SendEmailNotification(statusID);
+            }
         }
         else {
             //alert(data);
@@ -1273,8 +1275,10 @@ function processPhotoUpload(statusID, imageObj) {
         //alert('sent');
         if (photosToUpload.length > 0)
             processPhotoUpload(statusID, photosToUpload.shift());
-        else
-            NavigatePage('#pgHistory');
+        else {
+            //NavigatePage('#pgHistory');
+            SendEmailNotification(statusID);
+        }
     });
 }
 
@@ -1285,13 +1289,23 @@ function processPhotoDelete(statusID) {
         //alert('sent');
         if (photosToUpload.length > 0)
             processPhotoUpload(statusID, photosToUpload.shift());
-        else
-            NavigatePage('#pgHistory');
+        else {
+            //NavigatePage('#pgHistory');
+            SendEmailNotification(statusID);
+        }
     });
 }
 
 
+function SendEmailNotification(statusID) {
+    var _url = serviceRootUrl + "svc.aspx?op=SendNotification&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader + "&statusId=" + statusID;
+    Jsonp_Call(_url, true, "callbackSendEmailNotification");
+}
 
+
+function callbackSendEmailNotification(data) {
+    NavigatePage('#pgHistory');
+}
 
 
 
@@ -2034,6 +2048,22 @@ function SelectSpecialist() {
     //$("#td-error").text("").append(getLoadingMini());
     var _url = serviceRootUrl + "svc.aspx?op=GetSpecialists&SPUrl=" + spwebRootUrl + SitePath + "&authInfo=" + userInfoData.AuthenticationHeader
     Jsonp_Call(_url, true, "callbackSelectSpecialist");
+
+    $('<div>').simpledialog2({
+        id: 'SelectSpecialistPopup',
+        mode: 'blank',
+        headerText: 'Specialists',
+        headerClose: false,
+        fullScreen: true,
+        fullScreenForce: true,
+        transition: 'flip',
+        themeDialog: 'a SelectSpecialistPopup',
+        zindex: 2000,
+        blankContent:
+            "<div style='padding: 15px; overflow-y: scroll;height: " + ($(window).height() - 160) + "px;' id='divSelectSpecialistPopupContent'><br /><br />" +
+                "<center>" + getLoadingMini() + "</center>" +
+            "</div>" + "<a id='SelectSpecialistClose' rel='close' data-role='button' href='#'>Close</a>"
+    });
 }
 
 function callbackSelectSpecialist(data) {
@@ -2050,22 +2080,8 @@ function callbackSelectSpecialist(data) {
                     html += "<div class='SpecialistItem' onclick='SelectThisSpecialist(\"" + tempuser.SPUserID + "\",\"" + tempuser.DisplayName + "\",\"" + tempuser.LoginName.toLowerCase() + "\");'>" + tempuser.DisplayName + "</div>";
             }
             
-
-            $('<div>').simpledialog2({
-                id: 'SelectSpecialistPopup',
-                mode: 'blank',
-                headerText: 'Specialists',
-                headerClose: false,
-                fullScreen: true,
-                fullScreenForce: true,
-                transition: 'flip',
-                themeDialog: 'a SelectSpecialistPopup',
-                zindex: 2000,
-                blankContent:
-                    "<div style='padding: 15px; overflow-y: scroll;height: " + ($(window).height() - 160) + "px;'>" +
-                        html +
-                    "</div>" + "<a id='SelectSpecialistClose' rel='close' data-role='button' href='#'>Close</a>"
-            });
+            $("#divSelectSpecialistPopupContent").html(html);
+            
         }
     }
     catch (err) {
