@@ -2142,7 +2142,7 @@ function onPhotoDataSuccess(imageData) {
 function getPhotoWithData() {
     // Retrieve image file location from specified source
     navigator.camera.getPicture(onPhotoURISuccess, onPhotoDataFail, {
-        quality: 25,
+        quality: 50,
         destinationType: destinationType.FILE_URI,
         sourceType: pictureSource.PHOTOLIBRARY,
         encodingType: Camera.EncodingType.JPEG,
