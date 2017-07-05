@@ -2142,7 +2142,7 @@ function onPhotoDataSuccess(imageData) {
 function getPhotoWithData() {
     // Retrieve image file location from specified source
     navigator.camera.getPicture(onPhotoURISuccess, onPhotoDataFail, {
-        quality: 90,
+        quality: 100,
         destinationType: destinationType.FILE_URI,
         sourceType: pictureSource.PHOTOLIBRARY,
         encodingType: Camera.EncodingType.JPEG,
@@ -2161,7 +2161,7 @@ function onPhotoURISuccess(imageUri) {
         canvas.height = this.height;
         canvas.width = this.width;
         ctx.drawImage(this, 0, 0);
-        dataURL = canvas.toDataURL("image/jpeg", 0.6);
+        dataURL = canvas.toDataURL("image/jpeg", 0.5);
         onPhotoDataSuccess(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/ig, ""));
     };
     img.src = imageUri;
