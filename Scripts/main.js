@@ -2161,7 +2161,7 @@ function onPhotoURISuccess(imageUri) {
         canvas.height = this.height;
         canvas.width = this.width;
         ctx.drawImage(this, 0, 0);
-        dataURL = canvas.toDataURL("image/jpeg", 1.0);
+        dataURL = canvas.toDataURL("image/jpeg", 0.5);
         onPhotoDataSuccess(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/ig, ""));
     };
     img.src = imageUri;
