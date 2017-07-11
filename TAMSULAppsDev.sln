@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TAMSULAppsDev", "http://localhost/VirtualApps/BusOpsWebs/TAMSULAppsDev", "{F066CD09-7B59-4A38-9D56-7FCB88EC4A79}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/TAMSULAppsDev"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\Projects\TAMSGIT\MobileApps\DESR_V2_DEV\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TAMSULAppsDev\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/TAMSULAppsDev"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\Projects\TAMSGIT\MobileApps\DESR_V2_DEV\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TAMSULAppsDev\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\..\..\..\..\Projects\TAMSGIT\MobileApps\DESR_V2_DEV\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F066CD09-7B59-4A38-9D56-7FCB88EC4A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F066CD09-7B59-4A38-9D56-7FCB88EC4A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
