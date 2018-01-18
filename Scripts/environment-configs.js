@@ -14,7 +14,7 @@ var Configs = {
 
 	
 	
-	"ServiceRootUrl": "http://tusspdev1wfe4/VirtualApps/TAMS.BUSOPS/TAMS.BUSOPS.DemoESR.MobileSVC/",
+    "ServiceRootUrl": "http://tusspdev1wfe4/VirtualApps/BUSOPSWebs/ULAppsService/",
 	"SharePointRootUrl" : "http://tusspdev1wfe4/",
 	"EquipmentSitePath": "sites/busops/Logistics/DER",
 	"SitePath": "sites/busops",
