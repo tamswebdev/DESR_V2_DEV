@@ -50,8 +50,9 @@
     -->
 
   <!-- Customize your app and platform with the preference element. -->
-  <!-- <preference name='phonegap-version' value='cli-5.4.1' />				all: current version of PhoneGap -->
-  <preference name="phonegap-version" value="cli-6.5.0" />
+  <!-- <preference name='phonegap-version' value='cli-5.4.1' />		
+  <preference name="phonegap-version" value="cli-6.5.0" />-->
+  <preference name="phonegap-version" value="cli-7.1.0" />
 
 
   <preference name="orientation"                value="default" />
@@ -99,7 +100,7 @@
   <plugin name="cordova-plugin-device-orientation" source="npm" />
   <plugin name="cordova-plugin-dialogs" source="npm" />
   <plugin name="cordova-plugin-file" source="npm" />
-  <plugin name="cordova-plugin-file-transfer"/>
+  <plugin name="cordova-plugin-file-transfer" source="npm" />
   <plugin name="cordova-plugin-geolocation" source="npm" />
   <plugin name="cordova-plugin-globalization" source="npm" />
   <plugin name="cordova-plugin-inappbrowser" source="npm" />
