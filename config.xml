@@ -99,8 +99,8 @@
   <!--<plugin name="cordova-plugin-device-motion" source="npm" />
   <plugin name="cordova-plugin-device-orientation" source="npm" />-->
   <plugin name="cordova-plugin-dialogs" source="npm" />
-  <!--<plugin name="cordova-plugin-file" source="npm" version="4.0.0" />-->
-  <plugin name="cordova-plugin-file-transfer" source="npm" version="1.7.0" />
+  <!--<plugin name="cordova-plugin-file" source="npm" version="4.0.0" />
+  <plugin name="cordova-plugin-file-transfer" source="npm" version="1.7.0" />-->
   <plugin name="cordova-plugin-geolocation" source="npm" />
   <plugin name="cordova-plugin-globalization" source="npm" />
   <plugin name="cordova-plugin-inappbrowser" source="npm" />
