@@ -14,16 +14,16 @@ var Configs = {
 
 	
 	
-    "ServiceRootUrl": "http://tusspdev1wfe4/VirtualApps/BUSOPSWebs/ULAppsService/",
-	"SharePointRootUrl" : "http://tusspdev1wfe4/",
-	"EquipmentSitePath": "sites/busops/Logistics/DER",
-	"SitePath": "sites/busops",
-    "MKTSitePath": "sites/marketing"		
+    //"ServiceRootUrl": "http://tusspdev1wfe4/VirtualApps/BUSOPSWebs/ULAppsService/",
+	//"SharePointRootUrl" : "http://tusspdev1wfe4/",
+	//"EquipmentSitePath": "sites/busops/Logistics/DER",
+	//"SitePath": "sites/busops",
+    //"MKTSitePath": "sites/marketing"		
 
-    //"ServiceRootUrl": "https://intranetqa.tams.com/VirtualApps/TAMS.BUSOPS/BUSOPSWebs/TAMS.BUSOPS.DemoESR.MobileSVC/",
-    //"SharePointRootUrl": "https://intranetqa.tams.com/",
-    //"EquipmentSitePath": "sites/busops/Logistics/DER",
-    //"SitePath": "sites/busops",
-    //"MKTSitePath": "sites/marketing"
+    "ServiceRootUrl": "https://intranetqa.tams.com/VirtualApps/BUSOPSWebs/ULAppsService/",
+    "SharePointRootUrl": "https://intranetqa.tams.com/",
+    "EquipmentSitePath": "sites/busops/Logistics/DER",
+    "SitePath": "sites/busops",
+    "MKTSitePath": "sites/marketing"
 	
 };
